@@ -1,12 +1,1 @@
-// 获取
-        Map<String, List<RuleCategoryFilterVO>> categoryFilterMap = Optional.ofNullable(categoryList).orElse(Lists.newArrayList()).stream().map(category -> {
-            RuleCategoryFilterVO filterVO = new RuleCategoryFilterVO();
-            filterVO.setCode(category.getCode());
-            filterVO.setName(category.getName());
-            filterVO.setType(category.getType());
-            if(RuleCategoryTypeEnum.isMetric(category.getType())){
-                filterVO.setDesc(metricRangeMap.get(category.getCode()));
-            }
-            filterVO.setParendCode(category.getParentCode());
-            return filterVO;
-        }).collect(Collectors.groupingBy(RuleCategoryFilterVO::getType));
+{"ruleTaskLimit":[{"channelType":"不限制渠道品牌","channelTypeCode":"ALL","limit":3,"storeLevel":"不限制渠道品牌","storeLevelCode":"ALL"},{"channelType":"安踏成人","channelTypeCode":"CD01","limit":1,"storeLevel":"AES-300","storeLevelCode":"24CRDX13"},{"channelType":"安踏成人","channelTypeCode":"CD01","limit":2,"storeLevel":"AS","storeLevelCode":"24CRDX15"},{"channelType":"安踏综合","channelTypeCode":"CD03","limit":5,"storeLevel":"PALACE-300","storeLevelCode":"24CRDX02"}],"taskConfigRules":[{"ruleId":215,"storeIds":[3319,3353,4026,8637,33148,33588,33597],"taskConfigId":1015},{"ruleId":216,"storeIds":[5537,7100,7348,7381,7678,8085,8637,10115,10255,10339,10501,10619,10902,11031,11109,11584,11628,11899,13838,13915,18597,18643,19028,19500,20308,20395,20417,21552,21626,22256,22655,22762,25724],"taskConfigId":1017}],"taskNo":"anta-RL-1988904780612767744"}

@@ -1,0 +1,12 @@
+// 获取
+        Map<String, List<RuleCategoryFilterVO>> categoryFilterMap = Optional.ofNullable(categoryList).orElse(Lists.newArrayList()).stream().map(category -> {
+            RuleCategoryFilterVO filterVO = new RuleCategoryFilterVO();
+            filterVO.setCode(category.getCode());
+            filterVO.setName(category.getName());
+            filterVO.setType(category.getType());
+            if(RuleCategoryTypeEnum.isMetric(category.getType())){
+                filterVO.setDesc(metricRangeMap.get(category.getCode()));
+            }
+            filterVO.setParendCode(category.getParentCode());
+            return filterVO;
+        }).collect(Collectors.groupingBy(RuleCategoryFilterVO::getType));

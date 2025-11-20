@@ -1,8 +1,1 @@
-SELECT
-  t.id,
-  v.rule_id,
-  AVG(v.value)
-FROM
-  t_rule_eva_value_type t left join t_rule_eva_value v ON v.eva_type_id = t.id 
-where t.code = 'copyCnt' 
-group by v.eva_type_id, v.rule_id
+https://cnp.anta.com/kpanda/workloads/deployments

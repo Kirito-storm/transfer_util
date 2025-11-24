@@ -1,1 +1,85 @@
-https://cnp.anta.com/kpanda/workloads/deployments
+select
+            prod_source.launch_date launch_date,
+            prod_source.season_type season_type,
+            prod_source.prod_season prod_season,
+            prod_source.brand_name prod_brand_name,
+            prod_source.cms_code cms_code,
+            product_tag.is_broken_size is_broken_size,
+            product_tag.is_in_short is_in_short,
+            product_tag.is_onboard_warn is_onboard_warn,
+            product_tag.is_ranked_high is_ranked_high,
+            product_tag.is_ranked_low is_ranked_low,
+            product_tag.is_in_stay is_in_stay,
+            product_tag.is_new_shehlvz is_new_shehlvz,
+            product_tag.is_same_area_hot is_same_area_hot,
+            product_tag.is_unsalable is_unsalable,
+            product_tag.is_lower_upt is_lower_upt,
+            prod_source.prod_name prod_name,
+            prod_source.prod_no prod_no,  
+            prod_source.sales_amt_actual sales_amt_actual,
+            prod_source.total_retail_upt total_retail_upt,
+            prod_source.sales_amt_actual_store_rank sales_amt_actual_store_rank,
+            prod_source.sales_amt_actual_area_rank sales_amt_actual_area_rank,
+            prod_source.in_transit_inv_tag_amt in_transit_inv_tag_amt,
+            prod_source.sales_qty_store_rank sales_qty_store_rank,
+            prod_source.can_sale_days can_sale_days,
+            prod_source.is_full_size is_full_size,
+            prod_source.inv_amt_store_rank inv_amt_store_rank,
+            prod_source.inv_qty_store_rank inv_qty_store_rank,
+            prod_source.in_transit_inv_qty in_transit_inv_qty,
+            prod_source.arrival_days arrival_days,
+            prod_source.have_stock have_stock,
+            prod_source.is_soldout is_soldout,
+            prod_source.prod_list_price prod_list_price,
+            prod_source.sales_amt_list sales_amt_list,
+            prod_source.sales_qty_90d sales_qty_90d,
+            prod_source.prod_meterial prod_meterial,
+            prod_source.sales_qty sales_qty,
+            prod_source.inv_qty inv_qty,
+            prod_source.inv_amt inv_amt,
+            prod_source.product_id product_id,
+            prod_source.store_id store_id,
+            prod_source.tenant_id tenant_id,
+            prod_source.stats_date stats_date,
+            prod_source.prod_division prod_division,
+            prod_source.life_cycle_stage life_cycle_stage,
+            prod_source.accum_sale_tag_amt accum_sale_tag_amt,
+            prod_source.gender gender,
+            prod_source.prod_catagory prod_catagory,
+            prod_source.prod_theme prod_theme,
+            prod_source.prod_sub_division prod_sub_division  
+        from (
+            select
+            *
+            from
+             retail_consultant_db.t_ads_product_sales_weekly
+              where true 
+              and tenant_id = 'anta' 
+        ) prod_source
+        join (
+            select
+            tag.is_broken_size,
+            tag.is_in_short,
+            tag.is_onboard_warn,
+            tag.is_ranked_high,
+            tag.is_ranked_low,
+            tag.is_in_stay,
+            tag.is_new_shehlvz,
+            tag.is_same_area_hot,
+            tag.is_unsalable,
+            tag.is_lower_upt,
+            tag.stats_date stats_date,
+            tag.brand_name brand_name,
+            tag.product_id product_id,
+            tag.tenant_id tenant_id,
+            tag.store_id store_id
+            from
+             retail_consultant_db.t_ads_store_prod_tag_weekly_stats tag
+              where true 
+              and tenant_id = 'anta' 
+        ) product_tag
+            on prod_source.tenant_id=product_tag.tenant_id
+            and prod_source.store_id=product_tag.store_id
+            and prod_source.stats_date=product_tag.stats_date
+            and prod_source.product_id=product_tag.product_id
+            and prod_source.brand_name=product_tag.brand_name limit 1

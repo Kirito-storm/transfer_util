@@ -1,3 +1,115 @@
+-- retail_consultant_db.t_ads_similar_store_monthly_stats source
+
+--drop table retail_consultant_db.t_ads_middle_product ON CLUSTER cluster_single_shard
+
+
+CREATE MATERIALIZED VIEW retail_consultant_db.t_ads_middle_product ON CLUSTER cluster_single_shard
+(
+
+    `launch_date` Date,
+
+    `season_type` String,
+
+    `prod_season` String,
+
+    `prod_brand_name` String,
+ 
+    `cms_code` String,
+  
+    `is_broken_size` Nullable(UInt8),
+ 
+    `is_in_short` Nullable(UInt8),
+ 
+    `is_onboard_warn` Nullable(UInt8),
+  
+    `is_ranked_high` Nullable(UInt8),
+ 
+    `is_ranked_low` Nullable(UInt8),
+ 
+    `is_in_stay` Nullable(UInt8),
+  
+    `is_new_shehlvz` Nullable(UInt8),
+ 
+    `is_same_area_hot` Nullable(UInt8),
+ 
+    `is_unsalable` Nullable(UInt8),
+  
+    `is_lower_upt` Nullable(UInt8),
+ 
+    `prod_no` String,
+ 
+    `sales_amt_actual` Decimal(38,
+ 4),
+  
+    `total_retail_upt` Decimal(38,
+ 4),
+ 
+     `sales_amt_actual_store_rank` Nullable(Int32),
+ 
+     `sales_amt_actual_area_rank` Nullable(Int32),
+ 
+     `in_transit_inv_tag_amt` Decimal(38,
+ 4),
+ 
+     `sales_qty_store_rank` Nullable(Int32),
+ 
+     `can_sale_days` Nullable(Int32),
+ 
+     `is_full_size` Int32,
+ 
+     `inv_amt_store_rank` Nullable(Int32),
+ 
+     `inv_qty_store_rank` Nullable(Int32),
+ 
+     `in_transit_inv_qty` Decimal(38,
+ 4),
+ 
+     `arrival_days` Int32,
+ 
+     `have_stock` Int32,
+ 
+     `is_soldout` Int32,
+ 
+     `prod_list_price` Decimal(38,
+ 4),
+ 
+     `sales_amt_list` Decimal(38,
+ 4),
+ 
+     `sales_qty_90d` Int32,
+ 
+     `prod_meterial` String,
+ 
+     `sales_qty` Int32,
+ 
+     `inv_qty` Int32,
+ 
+     `inv_amt` Decimal(38,
+ 4),
+ 
+     `product_id` String,
+ 
+     `store_id` UInt64,
+ 
+     `tenant_id` String,
+ 
+     `stats_date` String,
+ 
+     `prod_division` String,
+ 
+     `life_cycle_stage` Nullable(Int32),
+ 
+     `accum_sale_tag_amt` Decimal(38,
+ 4),
+ 
+     `gender` String,
+ 
+     `prod_catagory` String,
+ 
+     `prod_theme` String,
+ 
+     `prod_sub_division` String
+) AS
 select
             prod_source.launch_date launch_date,
             prod_source.season_type season_type,
@@ -82,4 +194,8 @@ select
             and prod_source.store_id=product_tag.store_id
             and prod_source.stats_date=product_tag.stats_date
             and prod_source.product_id=product_tag.product_id
-            and prod_source.brand_name=product_tag.brand_name limit 1
+            and prod_source.brand_name=product_tag.brand_name
+       ENGINE = ReplicatedReplacingMergeTree('/clickhouse/{group}/tables/one/retail_consultant_db/t_ads_middle_product','{replica}')
+PARTITION BY stats_date
+SETTINGS index_granularity = 8192
+;

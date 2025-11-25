@@ -1,50 +1,131 @@
-列名	#	数据类型	长度	标度	非空	自动生成	自动递增	默认	描述
-launch_date	1	Date	10	[NULL]	true	false	false		
-season_type	2	String	[NULL]	[NULL]	true	false	false		
-prod_season	3	String	[NULL]	[NULL]	true	false	false		
-prod_brand_name	4	String	[NULL]	[NULL]	true	false	false		
-cms_code	5	String	[NULL]	[NULL]	true	false	false		
-prod_name	6	String	[NULL]	[NULL]	true	false	false		
-prod_no	7	String	[NULL]	[NULL]	true	false	false		
-sales_amt_actual	8	Decimal	38	4	true	false	false		
-total_retail_upt	9	Decimal	38	4	true	false	false		
-sales_amt_actual_store_rank	10	Nullable	10	[NULL]	false	false	false		
-sales_amt_actual_area_rank	11	Nullable	10	[NULL]	false	false	false		
-in_transit_inv_tag_amt	12	Decimal	38	4	true	false	false		
-sales_qty_store_rank	13	Nullable	10	[NULL]	false	false	false		
-can_sale_days	14	Nullable	10	[NULL]	false	false	false		
-is_full_size	15	Int32	10	[NULL]	true	false	false		
-inv_amt_store_rank	16	Nullable	10	[NULL]	false	false	false		
-inv_qty_store_rank	17	Nullable	10	[NULL]	false	false	false		
-in_transit_inv_qty	18	Decimal	38	4	true	false	false		
-arrival_days	19	Int32	10	[NULL]	true	false	false		
-have_stock	20	Int32	10	[NULL]	true	false	false		
-is_soldout	21	Int32	10	[NULL]	true	false	false		
-prod_list_price	22	Decimal	38	4	true	false	false		
-sales_amt_list	23	Decimal	38	4	true	false	false		
-sales_qty_90d	24	Int32	10	[NULL]	true	false	false		
-prod_meterial	25	String	[NULL]	[NULL]	true	false	false		
-sales_qty	26	Int32	10	[NULL]	true	false	false		
-inv_qty	27	Int32	10	[NULL]	true	false	false		
-inv_amt	28	Decimal	38	4	true	false	false		
-product_id	29	String	[NULL]	[NULL]	true	false	false		
-store_id	30	UInt64	20	[NULL]	true	false	false		
-tenant_id	31	String	[NULL]	[NULL]	true	false	false		
-stats_date	32	String	[NULL]	[NULL]	true	false	false		
-prod_division	33	String	[NULL]	[NULL]	true	false	false		
-life_cycle_stage	34	Nullable	10	[NULL]	false	false	false		
-accum_sale_tag_amt	35	Decimal	38	4	true	false	false		
-gender	36	String	[NULL]	[NULL]	true	false	false		
-prod_catagory	37	String	[NULL]	[NULL]	true	false	false		
-prod_theme	38	String	[NULL]	[NULL]	true	false	false		
-prod_sub_division	39	String	[NULL]	[NULL]	true	false	false		
-is_broken_size	40	Nullable	3	[NULL]	false	false	false		
-is_in_short	41	Nullable	3	[NULL]	false	false	false		
-is_onboard_warn	42	Nullable	3	[NULL]	false	false	false		
-is_ranked_high	43	Nullable	3	[NULL]	false	false	false		
-is_ranked_low	44	Nullable	3	[NULL]	false	false	false		
-is_in_stay	45	Nullable	3	[NULL]	false	false	false		
-is_new_shehlvz	46	Nullable	3	[NULL]	false	false	false		
-is_same_area_hot	47	Nullable	3	[NULL]	false	false	false		
-is_unsalable	48	Nullable	3	[NULL]	false	false	false		
-is_lower_upt	49	Nullable	3	[NULL]	false	false	false		
+select 
+   cur.*,
+   pre.sales_amt_actual_store_rank
+from   
+(select
+            prod_source.launch_date launch_date,
+            prod_source.season_type season_type,
+            prod_source.prod_season prod_season,
+            prod_source.brand_name prod_brand_name,
+            prod_source.cms_code cms_code,
+            prod_source.prod_name prod_name,
+            prod_source.prod_no prod_no,  
+            prod_source.sales_amt_actual sales_amt_actual,
+            prod_source.total_retail_upt total_retail_upt,
+            prod_source.sales_amt_actual_store_rank sales_amt_actual_store_rank,
+            prod_source.sales_amt_actual_area_rank sales_amt_actual_area_rank,
+            prod_source.in_transit_inv_tag_amt in_transit_inv_tag_amt,
+            prod_source.sales_qty_store_rank sales_qty_store_rank,
+            prod_source.can_sale_days can_sale_days,
+            prod_source.is_full_size is_full_size,
+            prod_source.inv_amt_store_rank inv_amt_store_rank,
+            prod_source.inv_qty_store_rank inv_qty_store_rank,
+            prod_source.in_transit_inv_qty in_transit_inv_qty,
+            prod_source.arrival_days arrival_days,
+            prod_source.have_stock have_stock,
+            prod_source.is_soldout is_soldout,
+            prod_source.prod_list_price prod_list_price,
+            prod_source.sales_amt_list sales_amt_list,
+            prod_source.sales_qty_90d sales_qty_90d,
+            prod_source.prod_meterial prod_meterial,
+            prod_source.sales_qty sales_qty,
+            prod_source.inv_qty inv_qty,
+            prod_source.inv_amt inv_amt,
+            prod_source.product_id product_id,
+            prod_source.store_id store_id,
+            prod_source.tenant_id tenant_id,
+            prod_source.stats_date stats_date,
+            prod_source.prod_division prod_division,
+            prod_source.life_cycle_stage life_cycle_stage,
+            prod_source.accum_sale_tag_amt accum_sale_tag_amt,
+            prod_source.gender gender,
+            prod_source.prod_catagory prod_catagory,
+            prod_source.prod_theme prod_theme,
+            prod_source.prod_sub_division prod_sub_division,
+            product_tag.is_broken_size is_broken_size,
+            product_tag.is_in_short is_in_short,
+            product_tag.is_onboard_warn is_onboard_warn,
+            product_tag.is_ranked_high is_ranked_high,
+            product_tag.is_ranked_low is_ranked_low,
+            product_tag.is_in_stay is_in_stay,
+            product_tag.is_new_shehlvz is_new_shehlvz,
+            product_tag.is_same_area_hot is_same_area_hot,
+            product_tag.is_unsalable is_unsalable,
+            product_tag.is_lower_upt is_lower_upt
+            from
+             retail_consultant_db.t_ads_product_sales_monthly prod_source
+             left outer join retail_consultant_db.t_ads_store_prod_tag_monthly_stats product_tag 
+            on prod_source.tenant_id=product_tag.tenant_id
+            and prod_source.store_id=product_tag.store_id
+            and prod_source.stats_date=product_tag.stats_date
+            and prod_source.product_id =product_tag.product_id
+            and prod_source.brand_name=product_tag.brand_name
+            and product_tag.stats_date = '2025-10-01'
+              where  prod_source.tenant_id = 'anta' 
+                          
+) cur inner join 
+(select
+            prod_source.launch_date launch_date,
+            prod_source.season_type season_type,
+            prod_source.prod_season prod_season,
+            prod_source.brand_name prod_brand_name,
+            prod_source.cms_code cms_code,
+            prod_source.prod_name prod_name,
+            prod_source.prod_no prod_no,  
+            prod_source.sales_amt_actual sales_amt_actual,
+            prod_source.total_retail_upt total_retail_upt,
+            prod_source.sales_amt_actual_store_rank sales_amt_actual_store_rank,
+            prod_source.sales_amt_actual_area_rank sales_amt_actual_area_rank,
+            prod_source.in_transit_inv_tag_amt in_transit_inv_tag_amt,
+            prod_source.sales_qty_store_rank sales_qty_store_rank,
+            prod_source.can_sale_days can_sale_days,
+            prod_source.is_full_size is_full_size,
+            prod_source.inv_amt_store_rank inv_amt_store_rank,
+            prod_source.inv_qty_store_rank inv_qty_store_rank,
+            prod_source.in_transit_inv_qty in_transit_inv_qty,
+            prod_source.arrival_days arrival_days,
+            prod_source.have_stock have_stock,
+            prod_source.is_soldout is_soldout,
+            prod_source.prod_list_price prod_list_price,
+            prod_source.sales_amt_list sales_amt_list,
+            prod_source.sales_qty_90d sales_qty_90d,
+            prod_source.prod_meterial prod_meterial,
+            prod_source.sales_qty sales_qty,
+            prod_source.inv_qty inv_qty,
+            prod_source.inv_amt inv_amt,
+            prod_source.product_id product_id,
+            prod_source.store_id store_id,
+            prod_source.tenant_id tenant_id,
+            prod_source.stats_date stats_date,
+            prod_source.prod_division prod_division,
+            prod_source.life_cycle_stage life_cycle_stage,
+            prod_source.accum_sale_tag_amt accum_sale_tag_amt,
+            prod_source.gender gender,
+            prod_source.prod_catagory prod_catagory,
+            prod_source.prod_theme prod_theme,
+            prod_source.prod_sub_division prod_sub_division,
+            product_tag.is_broken_size is_broken_size,
+            product_tag.is_in_short is_in_short,
+            product_tag.is_onboard_warn is_onboard_warn,
+            product_tag.is_ranked_high is_ranked_high,
+            product_tag.is_ranked_low is_ranked_low,
+            product_tag.is_in_stay is_in_stay,
+            product_tag.is_new_shehlvz is_new_shehlvz,
+            product_tag.is_same_area_hot is_same_area_hot,
+            product_tag.is_unsalable is_unsalable,
+            product_tag.is_lower_upt is_lower_upt
+            from
+             retail_consultant_db.t_ads_product_sales_monthly prod_source
+             left outer join retail_consultant_db.t_ads_store_prod_tag_monthly_stats product_tag 
+            on prod_source.tenant_id=product_tag.tenant_id
+            and prod_source.store_id=product_tag.store_id
+            and prod_source.stats_date=product_tag.stats_date
+            and prod_source.product_id =product_tag.product_id
+            and prod_source.brand_name=product_tag.brand_name
+            and product_tag.stats_date = '2025-09-01'
+              where prod_source.tenant_id = 'anta' 
+                     
+) pre on cur.tenant_id=pre.tenant_id
+      and cur.store_id=pre.store_id
+      and cur.product_id=pre.product_id
+      and cur.prod_brand_name=pre.prod_brand_name

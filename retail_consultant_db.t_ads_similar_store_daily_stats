@@ -1,0 +1,641 @@
+-- retail_consultant_db.t_ads_similar_store_daily_stats source
+
+CREATE VIEW retail_consultant_db.t_ads_similar_store_daily_stats
+(
+
+    `tenant_id` String,
+
+    `stats_date` String,
+
+    `store_type` String,
+
+    `sku_soldout_rate_similar` Nullable(Decimal(10,
+ 4)),
+
+    `medium_structure_deviation_similar` Nullable(Decimal(10,
+ 4)),
+
+    `sales_amt_actual_similar` Nullable(Decimal(32,
+ 4)),
+
+    `atv_similar` Nullable(Decimal(32,
+ 4)),
+
+    `effect_business_length_similar` Nullable(Decimal(10,
+ 4)),
+
+    `discount_rate_similar` Nullable(Decimal(10,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar` Nullable(Decimal(32,
+ 4)),
+
+    `deal_rate_similar` Nullable(Decimal(10,
+ 4)),
+
+    `vip_sales_amt_actual_pct_similar` Nullable(Decimal(10,
+ 4)),
+
+    `vip_repurchase_rate_similar` Nullable(Decimal(10,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar` Nullable(Decimal(10,
+ 4)),
+
+    `top20_match_rate_similar` Nullable(Decimal(10,
+ 4)),
+
+    `dynamic_sale_rate_similar` Nullable(Decimal(10,
+ 4)),
+
+    `sku_unbroken_rate_similar` Nullable(Decimal(10,
+ 4)),
+
+    `customer_cnt_similar` Nullable(Decimal(18,
+ 4)),
+
+    `upt_similar` Nullable(Decimal(18,
+ 4)),
+
+    `avg_unit_sales_list_similar` Nullable(Decimal(18,
+ 4)),
+
+    `inv_sale_rate_similar` Nullable(Decimal(18,
+ 4)),
+
+    `aur_similar` Nullable(Decimal(18,
+ 4)),
+
+    `sales_qty_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `soldout_rate_similar` Nullable(Decimal(38,
+ 4)) COMMENT '售罄率-同类值',
+
+    `top50_inv_depth_similar` Nullable(Decimal(38,
+ 4)) COMMENT 'top50库存深度-同类值',
+
+    `barg_new_cust_reg_ratio_similar` Nullable(Decimal(38,
+ 4)) COMMENT '新客入会率-同类值',
+
+    `brand_name` Nullable(String),
+
+    `top50_sales_amt_actual_similar` Nullable(Decimal(38,
+ 4)) COMMENT 'TOP50销售金额-同类值',
+
+    `top50_is_homo_cnt_similar` Nullable(Decimal(38,
+ 4)) COMMENT 'TOP50齐码款数-同类值',
+
+    `top50_art_no_cnt_similar` Nullable(Decimal(38,
+ 4)) COMMENT 'TOP50款数-同类值',
+
+    `top50_inv_qty_similar` Nullable(Decimal(38,
+ 4)) COMMENT 'TOP50库存数-同类值',
+
+    `have_sale_staff_cnt_similar` Nullable(Decimal(38,
+ 4)) COMMENT '有销售店员数-同类值',
+
+    `sales_amt_actual_in_season_similar` Nullable(Decimal(38,
+ 4)) COMMENT '新品销售额-同类值',
+
+    `sales_sku_cnt_similar` Nullable(Decimal(38,
+ 4)) COMMENT '销售款数-同类值',
+
+    `total_sku_cnt_similar` Nullable(Decimal(38,
+ 4)) COMMENT '到货款数-同类值',
+
+    `top50_match_cnt_similar` Nullable(Decimal(38,
+ 4)) COMMENT 'TOP50匹配款数-不区分品牌-同类值',
+
+    `mtd_have_sale_staff_cnt_similar` Decimal(38,
+ 4) COMMENT '月累计-有销售店员数-同类值',
+
+    `wtd_have_sale_staff_cnt_similar` Decimal(38,
+ 4) COMMENT '周累计-有销售店员数-同类值',
+
+    `mtd_have_sale_staff_cnt_total_similar` Decimal(38,
+ 4) COMMENT '月累计-有销售店员数-不区分品牌-同类值',
+
+    `wtd_have_sale_staff_cnt_total_similar` Decimal(38,
+ 4) COMMENT '周累计-有销售店员数-不区分品牌-同类值',
+
+    `mtd_sku_sales_cnt_similar` Decimal(38,
+ 4) COMMENT '月累计-销售款数-同类值',
+
+    `wtd_sku_sales_cnt_similar` Decimal(38,
+ 4) COMMENT '周累计-销售款数-同类值',
+
+    `mtd_total_sku_cnt_similar` Decimal(38,
+ 4) COMMENT '月累计-到货款数-同类值',
+
+    `wtd_total_sku_cnt_similar` Decimal(38,
+ 4) COMMENT '周累计-到货款数-同类值',
+
+    `mtd_top50_sales_amt_actual_similar` Decimal(38,
+ 4) COMMENT '月累计-TOP50销售金额-同类值',
+
+    `wtd_top50_sales_amt_actual_similar` Decimal(38,
+ 4) COMMENT '周累计-TOP50销售金额-同类值',
+
+    `yun_store_sale_amt_similar` Nullable(Decimal(32,
+ 4)) COMMENT '云店销售金额-同类值',
+
+    `large_screen_sale_amt_similar` Nullable(Decimal(32,
+ 4)) COMMENT '大屏销售金额-同类值',
+
+    `total_amount_similar` Nullable(Decimal(32,
+ 4)) COMMENT '全渠道流水-同类值',
+
+    `sales_amt_actual_pct_similar` Nullable(Decimal(32,
+ 4)) COMMENT '零售金额达成率-同类值',
+
+    `offline_amt_similar` Nullable(Decimal(32,
+ 4)) COMMENT '线下流水-同类值',
+
+    `gw_retail_amt_similar` Nullable(Decimal(32,
+ 4)) COMMENT '官网流水-同类值',
+
+    `offline_amt_pct_similar` Nullable(Decimal(32,
+ 4)) COMMENT '线下流水占比-同类值',
+
+    `yun_store_sale_amt_pct_similar` Nullable(Decimal(32,
+ 4)) COMMENT '云店流水占比-同类值',
+
+    `large_screen_sale_amt_pct_similar` Nullable(Decimal(32,
+ 4)) COMMENT '大屏流水占比-同类值',
+
+    `gw_retail_amt_pct_similar` Nullable(Decimal(32,
+ 4)) COMMENT '官网流水占比-同类值',
+
+    `top50_sku_unbroken_rate_similar` Nullable(Decimal(32,
+ 4)) COMMENT 'TOP50齐码率-同类值',
+
+    `top50_sales_inv_match_rate_similar` Nullable(Decimal(32,
+ 4)) COMMENT 'TOP50匹配度-同类值',
+
+    `discount_rate_diff_similar` Nullable(Decimal(32,
+ 4)) COMMENT '单件多件折扣差-同类值',
+
+    `singular_retail_cnt_similar` Nullable(Decimal(32,
+ 4)) COMMENT '单件小票数量-同类值',
+
+    `singular_tot_amt_list_similar` Nullable(Decimal(32,
+ 4)) COMMENT '单件小票销售吊牌额-同类值',
+
+    `singular_tot_amt_actual_similar` Nullable(Decimal(32,
+ 4)) COMMENT '单件小票销售额-同类值',
+
+    `singular_discount_rate_similar` Nullable(Decimal(32,
+ 4)) COMMENT '单件小票折扣率-同类值',
+
+    `plural_retail_cnt_similar` Nullable(Decimal(32,
+ 4)) COMMENT '多件小票数量-同类值',
+
+    `plural_retail_cnt_pct_similar` Nullable(Decimal(32,
+ 4)) COMMENT '多件小票数量占比-同类值',
+
+    `plural_tot_amt_list_similar` Nullable(Decimal(32,
+ 4)) COMMENT '多件小票销售吊牌额-同类值',
+
+    `plural_discount_rate_similar` Nullable(Decimal(32,
+ 4)) COMMENT '多件小票折扣率-同类值',
+
+    `vip_repurchase_cnt_similar` Nullable(Decimal(32,
+ 4)) COMMENT '复购会员数-同类值',
+
+    `vip_retail_pct_similar` Nullable(Decimal(32,
+ 4)) COMMENT '会员订单占比-同类值',
+
+    `vip_repurchase_duration_similar` Nullable(Decimal(32,
+ 4)) COMMENT '会员平均复购天数-同类值',
+
+    `shoes_clothes_ratio_similar` Nullable(Decimal(32,
+ 4)) COMMENT '鞋服比-同类值',
+
+    `inside_outside_ratio_similar` Nullable(Decimal(32,
+ 4)) COMMENT '内外比-同类值',
+
+    `retial_cnt_per_staff_similar` Nullable(Decimal(32,
+ 4)) COMMENT '人均订单量-同类值',
+
+    `new_sku_discount_rate_similar` Nullable(Decimal(32,
+ 4)) COMMENT '当季产品折扣率-同类值',
+
+    `avg_unit_inv_list_similar` Nullable(Decimal(32,
+ 4)) COMMENT '库存件牌价-同类值',
+
+    `stay_sku_cnt_similar` Nullable(Decimal(32,
+ 4)) COMMENT '呆货数-同类值',
+
+    `sale_deep_similar` Nullable(Decimal(32,
+ 4)) COMMENT '销售深度-同类值',
+
+    `upt_excl_acc_similar` Nullable(Decimal(32,
+ 4)) COMMENT '除配件连带率-同类值',
+
+    `median_staff_without_socks_related_ratio_similar` Decimal(10,
+ 4) COMMENT '店员剔袜连带-同类中位数值',
+
+    `median_staff_qty_gt2_receipt_ratio_similar` Decimal(10,
+ 4) COMMENT '店员大于两件小票占比-同类中位数值',
+
+    `median_staff_amt_ge1000_receipt_ratio_similar` Decimal(10,
+ 4) COMMENT '店员千元大单占比-同类中位数值',
+
+    `median_staff_shoes_sock_ratio_similar` Decimal(10,
+ 4) COMMENT '店员鞋袜比-同类中位数值',
+
+    `median_staff_shoes_clothes_ratio_similar` Decimal(10,
+ 4) COMMENT '店员鞋服比-同类中位数值',
+
+    `median_staff_top_bottom_ratio_similar` Decimal(10,
+ 4) COMMENT '店员上下比-同类中位数值',
+
+    `median_staff_inside_outside_ratio_similar` Decimal(10,
+ 4) COMMENT '店员内外比-同类中位数值',
+
+    `median_staff_cp_receipt_ratio_similar` Decimal(10,
+ 4) COMMENT '店员含棉羽小票占比-同类中位数值',
+
+    `median_staff_shoes_receipt_ratio_similar` Decimal(10,
+ 4) COMMENT '店员含鞋小票占比-同类中位数值',
+
+    `median_staff_shoes_qty_ge2_receipt_ratio_similar` Decimal(10,
+ 4) COMMENT '店员含2双鞋小票占比-同类中位数值',
+
+    `median_staff_shoes_tag_gt599_receipt_ratio_similar` Decimal(10,
+ 4) COMMENT '店员含>599鞋小票占比-同类中位数值',
+
+    `median_staff_qty_1_receipt_qty_similar` Decimal(10,
+ 4) COMMENT '店员单件小票数-同类中位数值',
+
+    `median_staff_shoes_clothes_receipt_qty_similar` Decimal(10,
+ 4) COMMENT '店员鞋服小票数量-同类中位数值',
+
+    `median_staff_shoes_clothes_pct_similar` Decimal(10,
+ 4) COMMENT '店员鞋服小票占比-同类值',
+
+    `median_staff_single_piece_retail_pct_similar` Decimal(10,
+ 4) COMMENT '店员单件小票占比-同类值',
+
+    `reach_sales_amt_actual_per_staff_similar` Nullable(Int32) COMMENT '低人效人数-同类值,
+\r\n\r\n\r\n同类店铺的(人效排名靠后且低于同类店水平的老员工人数)',
+
+    `new_staff_similar` Nullable(Int32) COMMENT '30日内入职人数-同类值,
+\r\n\r\n\r\n同类店铺的(30日内入职人数)',
+
+    `lower_upt_similar` Nullable(Int32) COMMENT '低连带人数-同类值,
+\r\n\r\n\r\n同类店铺的(连带率排名靠后且低于同类店水平的老员工人数)',
+
+    `lower_atv_similar` Nullable(Int32) COMMENT '低客单人数-同类值,
+\r\n\r\n\r\n同类店铺的(客单价排名靠后且低于同类店水平的老员工人数)',
+
+    `lower_discount_similar` Nullable(Int32) COMMENT '低折扣人数-同类值,
+\r\n\r\n\r\n同类店铺的(折扣率排名靠后且低于同类店水平的老员工人数)',
+
+    `sale_piece_similar` Nullable(Int32) COMMENT '销售件数-同类值,
+\r\n\r\n\r\n同类店铺的(周期内总销售数量)',
+
+    `sale_tag_amt_similar` Nullable(Decimal(38,
+ 4)) COMMENT '销售吊牌额-同类值,
+\r\n\r\n\r\n同类店铺的(周期内总销售吊牌额)',
+
+    `new_sku_inv_amt_pct_similar` Nullable(Decimal(38,
+ 4)) COMMENT '新品库存占比-同类值,
+\r\n\r\n\r\n同类店铺的(新品库存金额÷总库存金额)',
+
+    `new_sku_inv_amt_similar` Nullable(Decimal(38,
+ 4)) COMMENT '新品库存金额-同类值,
+\r\n\r\n\r\n同类店铺的(新品库存金额汇总)',
+
+    `sales_inventory_diff_similar` Nullable(Decimal(38,
+ 4)) COMMENT '销存差-同类值,
+\r\n\r\n\r\n同类店铺的(新品销售占比-新品库存占比)',
+
+    `shoe_new_sku_sales_amt_actual_pct_similar` Nullable(Decimal(38,
+ 4)) COMMENT '鞋类新品销售占比-同类值,
+\r\n\r\n\r\n同类店铺的(鞋类新品销售额÷鞋类销售额)',
+
+    `shoe_new_sku_inv_amt_pct_similar` Nullable(Decimal(38,
+ 4)) COMMENT '鞋类新品库存占比-同类值,
+\r\n\r\n\r\n同类店铺的(鞋类新品库存金额÷鞋类库存金额)',
+
+    `shoe_sales_inventory_diff_similar` Nullable(Decimal(38,
+ 4)) COMMENT '鞋类销存差-同类值,
+\r\n\r\n\r\n同类店铺的(鞋类新品销售占比-鞋类新品库存占比)',
+
+    `clothe_new_sku_sales_amt_actual_pct_similar` Nullable(Decimal(38,
+ 4)) COMMENT '服装新品销售占比-同类值,
+\r\n\r\n\r\n同类店铺的(服装新品销售额÷服装销售额)',
+
+    `clothe_new_sku_inv_amt_pct_similar` Nullable(Decimal(38,
+ 4)) COMMENT '服装新品库存占比-同类值,
+\r\n\r\n\r\n同类店铺的(服装新品库存金额÷服装库存金额)',
+
+    `clothe_sales_inventory_diff_similar` Nullable(Decimal(38,
+ 4)) COMMENT '服装销存差-同类值,
+\r\n\r\n\r\n同类店铺的(服装新品销售占比-服装新品库存占比)',
+
+    `part_new_sku_sales_amt_actual_pct_similar` Nullable(Decimal(38,
+ 4)) COMMENT '配件新品销售占比-同类值,
+\r\n\r\n\r\n同类店铺的(配件新品销售额÷配件销售额)',
+
+    `part_new_sku_inv_amt_pct_similar` Nullable(Decimal(38,
+ 4)) COMMENT '配件新品库存占比-同类值,
+\r\n\r\n\r\n同类店铺的(配件新品库存金额÷配件库存金额)',
+
+    `part_sales_inventory_diff_similar` Nullable(Decimal(38,
+ 4)) COMMENT '配件销存差-同类值,
+\r\n\r\n\r\n同类店铺的(配件新品销售占比-配件新品库存占比)',
+
+    `inv_sku_cnt_similar` Nullable(Int32) COMMENT '库存款数-同类值,
+\r\n\r\n\r\n同类店铺的(有库存的SKU数)',
+
+    `shoe_stay_sku_cnt_similar` Nullable(Int32) COMMENT '鞋类30天不动销款数-同类值,
+\r\n\r\n\r\n同类店铺的(到店天数>30天，且近30天无销售的鞋类商品)',
+
+    `clothe_stay_sku_cnt_similar` Nullable(Int32) COMMENT '服装30天不动销款数-同类值,
+\r\n\r\n\r\n同类店铺的(到店天数>30天，且近30天无销售的服装商品)',
+
+    `part_stay_sku_cnt_similar` Nullable(Int32) COMMENT '配件30天不动销款数-同类值,
+\r\n\r\n\r\n同类店铺的(到店天数>30天，且近30天无销售的配件商品)',
+
+    `new_good_dynamic_rate_similar` Nullable(Decimal(38,
+ 4)) COMMENT '新品动销率-同类值',
+
+    `one_to_seven_dynamic_rate_similar` Nullable(Decimal(38,
+ 4)) COMMENT '1-7天动销率-同类值',
+
+    `plural_tot_amt_actual_similar` Nullable(Decimal(32,
+ 4)) COMMENT '多件小票销售额-同类值,
+\r\n\r\n\r\n同类店铺的购买2件以上商品的订单的销售额的平均值',
+
+    `amt_ge1000_receipt_ratio_similar` Nullable(Decimal(10,
+ 4)) COMMENT '千元大单占比-同类值',
+
+    `shoes_qty_ge2_receipt_ratio_similar` Nullable(Decimal(10,
+ 4)) COMMENT '含2双鞋小票占比-同类值',
+
+    `top_sales_upt_similar` Nullable(Decimal(10,
+ 4)) COMMENT 'TOP款连带率-同类值'
+) AS
+SELECT
+    'anta' AS tenant_id,
+
+    dm.statis_tm AS stats_date,
+
+    dm.store_type_class AS store_type,
+
+    dm.sku_soldout_rate_similar AS sku_soldout_rate_similar,
+
+    dm.medium_structure_deviation_similar AS medium_structure_deviation_similar,
+
+    dm.sales_amt_actual_similar AS sales_amt_actual_similar,
+
+    dm.atv_similar AS atv_similar,
+
+    dm.effect_business_length_similar AS effect_business_length_similar,
+
+    dm.discount_rate_similar AS discount_rate_similar,
+
+    dm.sales_amt_actual_per_staff_similar AS sales_amt_actual_per_staff_similar,
+
+    dm.deal_rate_similar AS deal_rate_similar,
+
+    dm.vip_sales_amt_actual_pct_similar AS vip_sales_amt_actual_pct_similar,
+
+    dm.vip_repurchase_rate_similar AS vip_repurchase_rate_similar,
+
+    dm.sales_amt_actual_in_season_pct_similar AS sales_amt_actual_in_season_pct_similar,
+
+    dm.top20_match_rate_similar AS top20_match_rate_similar,
+
+    dm.dynamic_sale_rate_similar AS dynamic_sale_rate_similar,
+
+    dm.sku_unbroken_rate_similar AS sku_unbroken_rate_similar,
+
+    dm.customer_cnt_similar AS customer_cnt_similar,
+
+    dm.upt_similar AS upt_similar,
+
+    dm.avg_unit_sales_list_similar AS avg_unit_sales_list_similar,
+
+    dm.inv_sale_rate_similar AS inv_sale_rate_similar,
+
+    dm.aur_similar AS aur_similar,
+
+    dm.sales_qty_similar AS sales_qty_similar,
+
+    dm.sales_amt_list_similar AS sales_amt_list_similar,
+
+    dm.retail_cnt_similar AS retail_cnt_similar,
+
+    dm.top50_sales_amt_actual_pct_similar AS top_sales_amt_actual_pct_similar,
+
+    dm.soldout_rate_similar AS soldout_rate_similar,
+
+    dm.top50_inv_depth_similar AS top50_inv_depth_similar,
+
+    dm.barg_new_cust_reg_ratio_similar AS barg_new_cust_reg_ratio_similar,
+
+    dm.brand_name AS brand_name,
+
+    dm.top50_sales_amt_actual_similar,
+
+    dm.top50_is_homo_cnt_similar,
+
+    dm.top50_art_no_cnt_similar,
+
+    dm.top50_inv_qty_similar,
+
+    dm.have_sale_staff_cnt_similar,
+
+    dm.sales_amt_actual_in_season_similar,
+
+    dm.sales_sku_cnt_similar,
+
+    dm.total_sku_cnt_similar,
+
+    dm.top50_match_cnt_similar,
+
+    dm.mtd_have_sale_staff_cnt_similar,
+
+    dm.wtd_have_sale_staff_cnt_similar,
+
+    dm.mtd_have_sale_staff_cnt_total_similar,
+
+    dm.wtd_have_sale_staff_cnt_total_similar,
+
+    dm.mtd_sku_sales_cnt_similar,
+
+    dm.wtd_sku_sales_cnt_similar,
+
+    dm.mtd_total_sku_cnt_similar,
+
+    dm.wtd_total_sku_cnt_similar,
+
+    dm.mtd_top50_sales_amt_actual_similar,
+
+    dm.wtd_top50_sales_amt_actual_similar,
+
+    dm.yun_store_sale_amt_similar AS yun_store_sale_amt_similar,
+
+    dm.large_screen_sale_amt_similar AS large_screen_sale_amt_similar,
+
+    dm.total_amount_similar,
+
+    dm.sales_amt_actual_pct_similar,
+
+    dm.offline_amt_similar,
+
+    dm.gw_retail_amt_similar,
+
+    dm.offline_amt_pct_similar,
+
+    dm.yun_store_sale_amt_pct_similar,
+
+    dm.large_screen_sale_amt_pct_similar,
+
+    dm.gw_retail_amt_pct_similar,
+
+    dm.top_sku_unbroken_rate_similar AS top50_sku_unbroken_rate_similar,
+
+    dm.top50_sales_inv_match_rate_similar,
+
+    dm.discount_rate_diff_similar,
+
+    dm.singular_retail_cnt_similar,
+
+    dm.singular_tot_amt_list_similar,
+
+    dm.singular_tot_amt_actual_similar,
+
+    dm.singular_discount_rate_similar,
+
+    dm.plural_retail_cnt_similar,
+
+    dm.plural_retail_cnt_pct_similar,
+
+    dm.plural_tot_amt_list_similar,
+
+    dm.plural_discount_rate_similar,
+
+    dm.vip_repurchase_cnt_similar,
+
+    dm.vip_retail_pct_similar,
+
+    dm.vip_repurchase_duration_similar,
+
+    dm.shoes_clothes_ratio_similar,
+
+    dm.inside_outside_ratio_similar,
+
+    dm.retial_cnt_per_staff_similar,
+
+    dm.new_sku_discount_rate_similar,
+
+    dm.avg_unit_inv_list_similar,
+
+    dm.stay_sku_cnt_similar,
+
+    dm.sale_deep_similar,
+
+    dm.upt_excl_acc_similar,
+
+    dm.median_staff_without_socks_related_ratio_similar,
+
+    dm.median_staff_qty_gt2_receipt_ratio_similar,
+
+    dm.median_staff_amt_ge1000_receipt_ratio_similar,
+
+    dm.median_staff_shoes_sock_ratio_similar,
+
+    dm.median_staff_shoes_clothes_ratio_similar,
+
+    dm.median_staff_top_bottom_ratio_similar,
+
+    dm.median_staff_inside_outside_ratio_similar,
+
+    dm.median_staff_cp_receipt_ratio_similar,
+
+    dm.median_staff_shoes_receipt_ratio_similar,
+
+    dm.median_staff_shoes_qty_ge2_receipt_ratio_similar,
+
+    dm.median_staff_shoes_tag_gt599_receipt_ratio_similar,
+
+    dm.median_staff_qty_1_receipt_qty_similar,
+
+    dm.median_staff_shoes_clothes_receipt_qty_similar,
+
+    dm.median_staff_shoes_clothes_pct_similar,
+
+    dm.median_staff_single_piece_retail_pct_similar,
+
+    dm.reach_sales_amt_actual_per_staff_similar,
+
+    dm.new_staff_similar,
+
+    dm.lower_upt_similar,
+
+    dm.lower_atv_similar,
+
+    dm.lower_discount_similar,
+
+    dm.sale_piece_similar,
+
+    dm.sale_tag_amt_similar,
+
+    dm.new_sku_inv_amt_pct_similar,
+
+    dm.new_sku_inv_amt_similar,
+
+    dm.sales_inventory_diff_similar,
+
+    dm.shoe_new_sku_sales_amt_actual_pct_similar,
+
+    dm.shoe_new_sku_inv_amt_pct_similar,
+
+    dm.shoe_sales_inventory_diff_similar,
+
+    dm.clothe_new_sku_sales_amt_actual_pct_similar,
+
+    dm.clothe_new_sku_inv_amt_pct_similar,
+
+    dm.clothe_sales_inventory_diff_similar,
+
+    dm.part_new_sku_sales_amt_actual_pct_similar,
+
+    dm.part_new_sku_inv_amt_pct_similar,
+
+    dm.part_sales_inventory_diff_similar,
+
+    dm.inv_sku_cnt_similar,
+
+    dm.shoe_stay_sku_cnt_similar,
+
+    dm.clothe_stay_sku_cnt_similar,
+
+    dm.part_stay_sku_cnt_similar,
+
+    dm.new_good_dynamic_rate_similar,
+
+    dm.one_to_seven_dynamic_rate_similar,
+
+    dm.plural_tot_amt_actual_similar,
+
+    dm.amt_ge1000_receipt_ratio_similar,
+
+    dm.shoes_qty_ge2_receipt_ratio_similar,
+
+    dm.top_sales_upt_similar
+FROM retail_consultant_db.dm_similar_store_daily_stats AS dm;

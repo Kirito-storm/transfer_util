@@ -1,34 +1,3859 @@
--- ---------------------------------------------------------------- 周 ---------------------------------------------------------------------------
--- 新品动销率-同类值
-ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `new_good_dynamic_rate_similar` Decimal(38,4) COMMENT '新品动销率-同类值';
--- 1-7天动销率-同类值
-ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `one_to_seven_dynamic_rate_similar` Decimal(38,4) COMMENT '1-7天动销率-同类值';
--- 新品动销率-原始值d
-ALTER TABLE dm_store_stats_weekly_tmp ADD COLUMN `new_good_dynamic_rate` Decimal(38,4) COMMENT '新品动销率';
--- 1-7天动销率-原始值
-ALTER TABLE dm_store_stats_weekly_tmp ADD COLUMN `one_to_seven_dynamic_rate` Decimal(38,4) COMMENT '1-7天动销率';
--- ---------------------------------------------------------------- 周 ---------------------------------------------------------------------------
+-- retail_consultant_db.t_ads_wide_product_daily definition
 
--- ---------------------------------------------------------------- 月 ---------------------------------------------------------------------------
--- 新品动销率-同类值
-ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `new_good_dynamic_rate_similar` Decimal(38,4) COMMENT '新品动销率-同类值';
--- 1-7天动销率-同类值
-ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `one_to_seven_dynamic_rate_similar` Decimal(38,4) COMMENT '1-7天动销率-同类值';
--- 新品动销率-原始值d
-ALTER TABLE dm_store_stats_monthly_tmp ADD COLUMN `new_good_dynamic_rate` Decimal(38,4) COMMENT '新品动销率';
--- 1-7天动销率-原始值
-ALTER TABLE dm_store_stats_monthly_tmp ADD COLUMN `one_to_seven_dynamic_rate` Decimal(38,4) COMMENT '1-7天动销率';
--- ---------------------------------------------------------------- 月 ---------------------------------------------------------------------------
+CREATE TABLE retail_consultant_db.t_ads_wide_product_daily
+(
 
--- ---------------------------------------------------------------- 日 ---------------------------------------------------------------------------
--- 新品动销率-同类值
-ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `new_good_dynamic_rate_similar` Decimal(38,4) COMMENT '新品动销率-同类值';
--- 1-7天动销率-同类值
-ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `one_to_seven_dynamic_rate_similar` Decimal(38,4) COMMENT '1-7天动销率-同类值';
--- 新品动销率-原始值d
-ALTER TABLE dm_store_stats_daily_tmp ADD COLUMN `new_good_dynamic_rate` Decimal(38,4) COMMENT '新品动销率';
--- 1-7天动销率-原始值
-ALTER TABLE dm_store_stats_daily_tmp ADD COLUMN `one_to_seven_dynamic_rate` Decimal(38,4) COMMENT '1-7天动销率';
--- ---------------------------------------------------------------- 日 ---------------------------------------------------------------------------
+    `launch_date` Date,
+
+    `season_type` String,
+
+    `prod_season` String,
+
+    `prod_brand_name` String,
+
+    `cms_code` String,
+
+    `prod_name` String,
+
+    `prod_no` String,
+
+    `sales_amt_actual` Decimal(38,
+ 4),
+
+    `total_retail_upt` Decimal(38,
+ 4),
+
+    `sales_amt_actual_store_rank` Nullable(Int32),
+
+    `sales_amt_actual_area_rank` Nullable(Int32),
+
+    `in_transit_inv_tag_amt` Decimal(38,
+ 4),
+
+    `sales_qty_store_rank` Nullable(Int32),
+
+    `can_sale_days` Nullable(Int32),
+
+    `is_full_size` Int32,
+
+    `inv_amt_store_rank` Nullable(Int32),
+
+    `inv_qty_store_rank` Nullable(Int32),
+
+    `in_transit_inv_qty` Decimal(38,
+ 4),
+
+    `arrival_days` Int32,
+
+    `have_stock` Int32,
+
+    `is_soldout` Int32,
+
+    `prod_list_price` Decimal(38,
+ 4),
+
+    `sales_amt_list` Decimal(38,
+ 4),
+
+    `sales_qty_90d` Int32,
+
+    `prod_meterial` String,
+
+    `sales_qty` Int32,
+
+    `inv_qty` Int32,
+
+    `inv_amt` Decimal(38,
+ 4),
+
+    `product_id` String,
+
+    `store_id` UInt64,
+
+    `tenant_id` String,
+
+    `stats_date` String,
+
+    `prod_division` String,
+
+    `life_cycle_stage` Nullable(Int32),
+
+    `accum_sale_tag_amt` Decimal(38,
+ 4),
+
+    `gender` String,
+
+    `prod_catagory` String,
+
+    `prod_theme` String,
+
+    `prod_sub_division` String,
+
+    `is_broken_size` Nullable(UInt8),
+
+    `is_in_short` Nullable(UInt8),
+
+    `is_onboard_warn` Nullable(UInt8),
+
+    `is_ranked_high` Nullable(UInt8),
+
+    `is_ranked_low` Nullable(UInt8),
+
+    `is_in_stay` Nullable(UInt8),
+
+    `is_new_shehlvz` Nullable(UInt8),
+
+    `is_same_area_hot` Nullable(UInt8),
+
+    `is_unsalable` Nullable(UInt8),
+
+    `is_lower_upt` Nullable(UInt8),
+
+    `sales_amt_actual_mom` Decimal(38,
+ 4),
+
+    `total_retail_upt_mom` Decimal(38,
+ 4),
+
+    `sales_amt_actual_store_rank_mom` Nullable(Int32),
+
+    `sales_amt_actual_area_rank_mom` Nullable(Int32),
+
+    `in_transit_inv_tag_amt_mom` Decimal(38,
+ 4),
+
+    `sales_qty_store_rank_mom` Nullable(Int32),
+
+    `can_sale_days_mom` Nullable(Int32),
+
+    `is_full_size_mom` Int32,
+
+    `inv_amt_store_rank_mom` Nullable(Int32),
+
+    `inv_qty_store_rank_mom` Nullable(Int32),
+
+    `in_transit_inv_qty_mom` Decimal(38,
+ 4),
+
+    `arrival_days_mom` Int32,
+
+    `have_stock_mom` Int32,
+
+    `is_soldout_mom` Int32,
+
+    `prod_list_price_mom` Decimal(38,
+ 4),
+
+    `sales_amt_list_mom` Decimal(38,
+ 4),
+
+    `sales_qty_90d_mom` Int32,
+
+    `sales_qty_mom` Int32,
+
+    `inv_qty_mom` Int32,
+
+    `inv_amt_mom` Decimal(38,
+ 4),
+
+    `life_cycle_stage_mom` Nullable(Int32),
+
+    `accum_sale_tag_amt_mom` Decimal(38,
+ 4),
+
+    `is_broken_size_mom` Nullable(UInt8),
+
+    `is_in_short_mom` Nullable(UInt8),
+
+    `is_onboard_warn_mom` Nullable(UInt8),
+
+    `is_ranked_high_mom` Nullable(UInt8),
+
+    `is_ranked_low_mom` Nullable(UInt8),
+
+    `is_in_stay_mom` Nullable(UInt8),
+
+    `is_new_shehlvz_mom` Nullable(UInt8),
+
+    `is_same_area_hot_mom` Nullable(UInt8),
+
+    `is_unsalable_mom` Nullable(UInt8),
+
+    `is_lower_upt_mom` Nullable(UInt8),
+
+    `sales_amt_actual_yoy` Decimal(38,
+ 4),
+
+    `total_retail_upt_yoy` Decimal(38,
+ 4),
+
+    `sales_amt_actual_store_rank_yoy` Nullable(Int32),
+
+    `sales_amt_actual_area_rank_yoy` Nullable(Int32),
+
+    `in_transit_inv_tag_amt_yoy` Decimal(38,
+ 4),
+
+    `sales_qty_store_rank_yoy` Nullable(Int32),
+
+    `can_sale_days_yoy` Nullable(Int32),
+
+    `is_full_size_yoy` Int32,
+
+    `inv_amt_store_rank_yoy` Nullable(Int32),
+
+    `inv_qty_store_rank_yoy` Nullable(Int32),
+
+    `in_transit_inv_qty_yoy` Decimal(38,
+ 4),
+
+    `arrival_days_yoy` Int32,
+
+    `have_stock_yoy` Int32,
+
+    `is_soldout_yoy` Int32,
+
+    `prod_list_price_yoy` Decimal(38,
+ 4),
+
+    `sales_amt_list_yoy` Decimal(38,
+ 4),
+
+    `sales_qty_90d_yoy` Int32,
+
+    `sales_qty_yoy` Int32,
+
+    `inv_qty_yoy` Int32,
+
+    `inv_amt_yoy` Decimal(38,
+ 4),
+
+    `life_cycle_stage_yoy` Nullable(Int32),
+
+    `accum_sale_tag_amt_yoy` Decimal(38,
+ 4),
+
+    `is_broken_size_yoy` Nullable(UInt8),
+
+    `is_in_short_yoy` Nullable(UInt8),
+
+    `is_onboard_warn_yoy` Nullable(UInt8),
+
+    `is_ranked_high_yoy` Nullable(UInt8),
+
+    `is_ranked_low_yoy` Nullable(UInt8),
+
+    `is_in_stay_yoy` Nullable(UInt8),
+
+    `is_new_shehlvz_yoy` Nullable(UInt8),
+
+    `is_same_area_hot_yoy` Nullable(UInt8),
+
+    `is_unsalable_yoy` Nullable(UInt8),
+
+    `is_lower_upt_yoy` Nullable(UInt8)
+)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/{group}/tables/one/retail_consultant_db/t_ads_wide_product_daily',
+ '{replica}')
+PARTITION BY stats_date
+ORDER BY (tenant_id,
+ store_id,
+ product_id,
+ stats_date)
+SETTINGS index_granularity = 8192;
 
 
+=================================================================================================================================
+
+-- retail_consultant_db.t_ads_wide_product_monthly definition
+
+CREATE TABLE retail_consultant_db.t_ads_wide_product_monthly
+(
+
+    `launch_date` Date,
+
+    `season_type` String,
+
+    `prod_season` String,
+
+    `prod_brand_name` String,
+
+    `cms_code` String,
+
+    `prod_name` String,
+
+    `prod_no` String,
+
+    `sales_amt_actual` Decimal(38,
+ 4),
+
+    `total_retail_upt` Decimal(38,
+ 4),
+
+    `sales_amt_actual_store_rank` Nullable(Int32),
+
+    `sales_amt_actual_area_rank` Nullable(Int32),
+
+    `in_transit_inv_tag_amt` Decimal(38,
+ 4),
+
+    `sales_qty_store_rank` Nullable(Int32),
+
+    `can_sale_days` Nullable(Int32),
+
+    `is_full_size` Int32,
+
+    `inv_amt_store_rank` Nullable(Int32),
+
+    `inv_qty_store_rank` Nullable(Int32),
+
+    `in_transit_inv_qty` Decimal(38,
+ 4),
+
+    `arrival_days` Int32,
+
+    `have_stock` Int32,
+
+    `is_soldout` Int32,
+
+    `prod_list_price` Decimal(38,
+ 4),
+
+    `sales_amt_list` Decimal(38,
+ 4),
+
+    `sales_qty_90d` Int32,
+
+    `prod_meterial` String,
+
+    `sales_qty` Int32,
+
+    `inv_qty` Int32,
+
+    `inv_amt` Decimal(38,
+ 4),
+
+    `product_id` String,
+
+    `store_id` UInt64,
+
+    `tenant_id` String,
+
+    `stats_date` String,
+
+    `prod_division` String,
+
+    `life_cycle_stage` Nullable(Int32),
+
+    `accum_sale_tag_amt` Decimal(38,
+ 4),
+
+    `gender` String,
+
+    `prod_catagory` String,
+
+    `prod_theme` String,
+
+    `prod_sub_division` String,
+
+    `is_broken_size` Nullable(UInt8),
+
+    `is_in_short` Nullable(UInt8),
+
+    `is_onboard_warn` Nullable(UInt8),
+
+    `is_ranked_high` Nullable(UInt8),
+
+    `is_ranked_low` Nullable(UInt8),
+
+    `is_in_stay` Nullable(UInt8),
+
+    `is_new_shehlvz` Nullable(UInt8),
+
+    `is_same_area_hot` Nullable(UInt8),
+
+    `is_unsalable` Nullable(UInt8),
+
+    `is_lower_upt` Nullable(UInt8),
+
+    `sales_amt_actual_mom` Decimal(38,
+ 4),
+
+    `total_retail_upt_mom` Decimal(38,
+ 4),
+
+    `sales_amt_actual_store_rank_mom` Nullable(Int32),
+
+    `sales_amt_actual_area_rank_mom` Nullable(Int32),
+
+    `in_transit_inv_tag_amt_mom` Decimal(38,
+ 4),
+
+    `sales_qty_store_rank_mom` Nullable(Int32),
+
+    `can_sale_days_mom` Nullable(Int32),
+
+    `is_full_size_mom` Int32,
+
+    `inv_amt_store_rank_mom` Nullable(Int32),
+
+    `inv_qty_store_rank_mom` Nullable(Int32),
+
+    `in_transit_inv_qty_mom` Decimal(38,
+ 4),
+
+    `arrival_days_mom` Int32,
+
+    `have_stock_mom` Int32,
+
+    `is_soldout_mom` Int32,
+
+    `prod_list_price_mom` Decimal(38,
+ 4),
+
+    `sales_amt_list_mom` Decimal(38,
+ 4),
+
+    `sales_qty_90d_mom` Int32,
+
+    `sales_qty_mom` Int32,
+
+    `inv_qty_mom` Int32,
+
+    `inv_amt_mom` Decimal(38,
+ 4),
+
+    `life_cycle_stage_mom` Nullable(Int32),
+
+    `accum_sale_tag_amt_mom` Decimal(38,
+ 4),
+
+    `is_broken_size_mom` Nullable(UInt8),
+
+    `is_in_short_mom` Nullable(UInt8),
+
+    `is_onboard_warn_mom` Nullable(UInt8),
+
+    `is_ranked_high_mom` Nullable(UInt8),
+
+    `is_ranked_low_mom` Nullable(UInt8),
+
+    `is_in_stay_mom` Nullable(UInt8),
+
+    `is_new_shehlvz_mom` Nullable(UInt8),
+
+    `is_same_area_hot_mom` Nullable(UInt8),
+
+    `is_unsalable_mom` Nullable(UInt8),
+
+    `is_lower_upt_mom` Nullable(UInt8),
+
+    `sales_amt_actual_yoy` Decimal(38,
+ 4),
+
+    `total_retail_upt_yoy` Decimal(38,
+ 4),
+
+    `sales_amt_actual_store_rank_yoy` Nullable(Int32),
+
+    `sales_amt_actual_area_rank_yoy` Nullable(Int32),
+
+    `in_transit_inv_tag_amt_yoy` Decimal(38,
+ 4),
+
+    `sales_qty_store_rank_yoy` Nullable(Int32),
+
+    `can_sale_days_yoy` Nullable(Int32),
+
+    `is_full_size_yoy` Int32,
+
+    `inv_amt_store_rank_yoy` Nullable(Int32),
+
+    `inv_qty_store_rank_yoy` Nullable(Int32),
+
+    `in_transit_inv_qty_yoy` Decimal(38,
+ 4),
+
+    `arrival_days_yoy` Int32,
+
+    `have_stock_yoy` Int32,
+
+    `is_soldout_yoy` Int32,
+
+    `prod_list_price_yoy` Decimal(38,
+ 4),
+
+    `sales_amt_list_yoy` Decimal(38,
+ 4),
+
+    `sales_qty_90d_yoy` Int32,
+
+    `sales_qty_yoy` Int32,
+
+    `inv_qty_yoy` Int32,
+
+    `inv_amt_yoy` Decimal(38,
+ 4),
+
+    `life_cycle_stage_yoy` Nullable(Int32),
+
+    `accum_sale_tag_amt_yoy` Decimal(38,
+ 4),
+
+    `is_broken_size_yoy` Nullable(UInt8),
+
+    `is_in_short_yoy` Nullable(UInt8),
+
+    `is_onboard_warn_yoy` Nullable(UInt8),
+
+    `is_ranked_high_yoy` Nullable(UInt8),
+
+    `is_ranked_low_yoy` Nullable(UInt8),
+
+    `is_in_stay_yoy` Nullable(UInt8),
+
+    `is_new_shehlvz_yoy` Nullable(UInt8),
+
+    `is_same_area_hot_yoy` Nullable(UInt8),
+
+    `is_unsalable_yoy` Nullable(UInt8),
+
+    `is_lower_upt_yoy` Nullable(UInt8)
+)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/{group}/tables/one/retail_consultant_db/t_ads_wide_product_monthly',
+ '{replica}')
+PARTITION BY stats_date
+ORDER BY (tenant_id,
+ store_id,
+ product_id,
+ stats_date)
+SETTINGS index_granularity = 8192;
+
+========================================================================================
+
+-- retail_consultant_db.t_ads_wide_product_weekly definition
+
+CREATE TABLE retail_consultant_db.t_ads_wide_product_weekly
+(
+
+    `launch_date` Date,
+
+    `season_type` String,
+
+    `prod_season` String,
+
+    `prod_brand_name` String,
+
+    `cms_code` String,
+
+    `prod_name` String,
+
+    `prod_no` String,
+
+    `sales_amt_actual` Decimal(38,
+ 4),
+
+    `total_retail_upt` Decimal(38,
+ 4),
+
+    `sales_amt_actual_store_rank` Nullable(Int32),
+
+    `sales_amt_actual_area_rank` Nullable(Int32),
+
+    `in_transit_inv_tag_amt` Decimal(38,
+ 4),
+
+    `sales_qty_store_rank` Nullable(Int32),
+
+    `can_sale_days` Nullable(Int32),
+
+    `is_full_size` Int32,
+
+    `inv_amt_store_rank` Nullable(Int32),
+
+    `inv_qty_store_rank` Nullable(Int32),
+
+    `in_transit_inv_qty` Decimal(38,
+ 4),
+
+    `arrival_days` Int32,
+
+    `have_stock` Int32,
+
+    `is_soldout` Int32,
+
+    `prod_list_price` Decimal(38,
+ 4),
+
+    `sales_amt_list` Decimal(38,
+ 4),
+
+    `sales_qty_90d` Int32,
+
+    `prod_meterial` String,
+
+    `sales_qty` Int32,
+
+    `inv_qty` Int32,
+
+    `inv_amt` Decimal(38,
+ 4),
+
+    `product_id` String,
+
+    `store_id` UInt64,
+
+    `tenant_id` String,
+
+    `stats_date` String,
+
+    `prod_division` String,
+
+    `life_cycle_stage` Nullable(Int32),
+
+    `accum_sale_tag_amt` Decimal(38,
+ 4),
+
+    `gender` String,
+
+    `prod_catagory` String,
+
+    `prod_theme` String,
+
+    `prod_sub_division` String,
+
+    `is_broken_size` Nullable(UInt8),
+
+    `is_in_short` Nullable(UInt8),
+
+    `is_onboard_warn` Nullable(UInt8),
+
+    `is_ranked_high` Nullable(UInt8),
+
+    `is_ranked_low` Nullable(UInt8),
+
+    `is_in_stay` Nullable(UInt8),
+
+    `is_new_shehlvz` Nullable(UInt8),
+
+    `is_same_area_hot` Nullable(UInt8),
+
+    `is_unsalable` Nullable(UInt8),
+
+    `is_lower_upt` Nullable(UInt8),
+
+    `sales_amt_actual_mom` Decimal(38,
+ 4),
+
+    `total_retail_upt_mom` Decimal(38,
+ 4),
+
+    `sales_amt_actual_store_rank_mom` Nullable(Int32),
+
+    `sales_amt_actual_area_rank_mom` Nullable(Int32),
+
+    `in_transit_inv_tag_amt_mom` Decimal(38,
+ 4),
+
+    `sales_qty_store_rank_mom` Nullable(Int32),
+
+    `can_sale_days_mom` Nullable(Int32),
+
+    `is_full_size_mom` Int32,
+
+    `inv_amt_store_rank_mom` Nullable(Int32),
+
+    `inv_qty_store_rank_mom` Nullable(Int32),
+
+    `in_transit_inv_qty_mom` Decimal(38,
+ 4),
+
+    `arrival_days_mom` Int32,
+
+    `have_stock_mom` Int32,
+
+    `is_soldout_mom` Int32,
+
+    `prod_list_price_mom` Decimal(38,
+ 4),
+
+    `sales_amt_list_mom` Decimal(38,
+ 4),
+
+    `sales_qty_90d_mom` Int32,
+
+    `sales_qty_mom` Int32,
+
+    `inv_qty_mom` Int32,
+
+    `inv_amt_mom` Decimal(38,
+ 4),
+
+    `life_cycle_stage_mom` Nullable(Int32),
+
+    `accum_sale_tag_amt_mom` Decimal(38,
+ 4),
+
+    `is_broken_size_mom` Nullable(UInt8),
+
+    `is_in_short_mom` Nullable(UInt8),
+
+    `is_onboard_warn_mom` Nullable(UInt8),
+
+    `is_ranked_high_mom` Nullable(UInt8),
+
+    `is_ranked_low_mom` Nullable(UInt8),
+
+    `is_in_stay_mom` Nullable(UInt8),
+
+    `is_new_shehlvz_mom` Nullable(UInt8),
+
+    `is_same_area_hot_mom` Nullable(UInt8),
+
+    `is_unsalable_mom` Nullable(UInt8),
+
+    `is_lower_upt_mom` Nullable(UInt8),
+
+    `sales_amt_actual_yoy` Decimal(38,
+ 4),
+
+    `total_retail_upt_yoy` Decimal(38,
+ 4),
+
+    `sales_amt_actual_store_rank_yoy` Nullable(Int32),
+
+    `sales_amt_actual_area_rank_yoy` Nullable(Int32),
+
+    `in_transit_inv_tag_amt_yoy` Decimal(38,
+ 4),
+
+    `sales_qty_store_rank_yoy` Nullable(Int32),
+
+    `can_sale_days_yoy` Nullable(Int32),
+
+    `is_full_size_yoy` Int32,
+
+    `inv_amt_store_rank_yoy` Nullable(Int32),
+
+    `inv_qty_store_rank_yoy` Nullable(Int32),
+
+    `in_transit_inv_qty_yoy` Decimal(38,
+ 4),
+
+    `arrival_days_yoy` Int32,
+
+    `have_stock_yoy` Int32,
+
+    `is_soldout_yoy` Int32,
+
+    `prod_list_price_yoy` Decimal(38,
+ 4),
+
+    `sales_amt_list_yoy` Decimal(38,
+ 4),
+
+    `sales_qty_90d_yoy` Int32,
+
+    `sales_qty_yoy` Int32,
+
+    `inv_qty_yoy` Int32,
+
+    `inv_amt_yoy` Decimal(38,
+ 4),
+
+    `life_cycle_stage_yoy` Nullable(Int32),
+
+    `accum_sale_tag_amt_yoy` Decimal(38,
+ 4),
+
+    `is_broken_size_yoy` Nullable(UInt8),
+
+    `is_in_short_yoy` Nullable(UInt8),
+
+    `is_onboard_warn_yoy` Nullable(UInt8),
+
+    `is_ranked_high_yoy` Nullable(UInt8),
+
+    `is_ranked_low_yoy` Nullable(UInt8),
+
+    `is_in_stay_yoy` Nullable(UInt8),
+
+    `is_new_shehlvz_yoy` Nullable(UInt8),
+
+    `is_same_area_hot_yoy` Nullable(UInt8),
+
+    `is_unsalable_yoy` Nullable(UInt8),
+
+    `is_lower_upt_yoy` Nullable(UInt8)
+)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/{group}/tables/one/retail_consultant_db/t_ads_wide_product_weekly',
+ '{replica}')
+PARTITION BY stats_date
+ORDER BY (tenant_id,
+ store_id,
+ product_id,
+ stats_date)
+SETTINGS index_granularity = 8192;
+
+=====================================================================================
+
+-- retail_consultant_db.t_ads_wide_store_daily definition
+
+CREATE TABLE retail_consultant_db.t_ads_wide_store_daily
+(
+
+    `cms_code` String,
+
+    `brand_store_code` String,
+
+    `temperature_area` String,
+
+    `store_nature` String,
+
+    `store_type_name` String,
+
+    `shopLevel_adjust` String,
+
+    `org_branch_name` String,
+
+    `stats_date` String,
+
+    `name` String,
+
+    `address` String,
+
+    `province_name` String,
+
+    `join_type` String,
+
+    `company_type` String,
+
+    `store_id` UInt64,
+
+    `key_store` UInt8,
+
+    `opening_date` Date,
+
+    `store_type` String,
+
+    `expand_type` String,
+
+    `store_image_name` String,
+
+    `rack_type` String,
+
+    `channel_brand_code` String,
+
+    `city_name` String,
+
+    `tenant_id` String,
+
+    `is_retail` UInt8,
+
+    `district_name` String,
+
+    `level` String,
+
+    `org_office_name` String,
+
+    `brand_name` String,
+
+    `store_level_name` String,
+
+    `org_area_name` String,
+
+    `business_status` String,
+
+    `new_good_dynamic_rate` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_cnt_similar` Nullable(Int32),
+
+    `inv_sale_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `upt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar` Nullable(Decimal(38,
+ 4)),
+
+    `aur_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sku_unbroken_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_sales_qty` Nullable(Int32),
+
+    `top50_sales_inv_match_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `thousand_retail_cnt_pct` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_duration_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt` Nullable(Int32),
+
+    `top50_match_cnt` Nullable(Int32),
+
+    `sales_amt_actual_in_season` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `issue_qty` Nullable(Int32),
+
+    `numOfPurMember_sc_label` Nullable(String),
+
+    `top_sales_upt` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt` Nullable(Int32),
+
+    `vip_retail_pct` Nullable(Decimal(38,
+ 4)),
+
+    `shop_area` Nullable(Decimal(38,
+ 4)),
+
+    `exec_qty` Nullable(Int32),
+
+    `gw_retail_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `couponUsageRate_sc_label` Nullable(String),
+
+    `plural_tot_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_similar` Nullable(Decimal(38,
+ 4)),
+
+    `numOfPurNewMember_sc_label` Nullable(String),
+
+    `salesOfInSeason_sc_label` Nullable(String),
+
+    `consume_member_qty` Nullable(Int32),
+
+    `avg_unit_inv_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_retail_cnt` Nullable(Int32),
+
+    `retial_cnt_per_staff_similar` Nullable(Int32),
+
+    `sales_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `inv_amt` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_qty` Nullable(Int32),
+
+    `top50_art_no_cnt` Nullable(Int32),
+
+    `topFullSizeRate_sc_label` Nullable(String),
+
+    `plural_tot_amt_actual_similar` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt` Nullable(Decimal(38,
+ 4)),
+
+    `sale_deep_similar` Nullable(Decimal(38,
+ 4)),
+
+    `plural_tot_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `yun_store_sale_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_similar` Nullable(Int32),
+
+    `sales_sc_label` Nullable(String),
+
+    `shoes_clothes_ratio` Nullable(Decimal(38,
+ 4)),
+
+    `matchDegTopProduct_sc_label` Nullable(String),
+
+    `new_consume_member_qty` Nullable(Int32),
+
+    `atv_sc_label` Nullable(String),
+
+    `consume_member_qty_similar` Nullable(Int32),
+
+    `cr_sc_label` Nullable(String),
+
+    `numOfPurExistMember_sc_label` Nullable(String),
+
+    `old_consume_member_qty` Nullable(Int32),
+
+    `singular_tot_amt_list` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `upt_excl_acc_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sales_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `dynamic_sale_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `total_sku_cnt` Nullable(Int32),
+
+    `new_good_dynamic_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `old_consume_member_qty_similar` Nullable(Int32),
+
+    `atv_similar` Nullable(Decimal(38,
+ 4)),
+
+    `exec_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_qty_ge2_receipt_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `have_sale_staff_cnt` Nullable(Int32),
+
+    `amt_ge1000_receipt_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `md_sc_label` Nullable(String),
+
+    `plural_discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_diff_similar` Nullable(Decimal(38,
+ 4)),
+
+    `salesTnumStaffs_sc_label` Nullable(String),
+
+    `plural_tot_amt_list` Nullable(Decimal(38,
+ 4)),
+
+    `top50_is_homo_cnt` Nullable(Int32),
+
+    `sales_sku_cnt` Nullable(Int32),
+
+    `singular_tot_amt_actual_similar` Nullable(Decimal(38,
+ 4)),
+
+    `upt_sc_label` Nullable(String),
+
+    `topSalesPct_sc_label` Nullable(String),
+
+    `vip_repurchase_duration` Nullable(Decimal(38,
+ 4)),
+
+    `inv_sale_rate` Nullable(Decimal(38,
+ 4)),
+
+    `two_pairs_shoes_retail_cnt_pct` Nullable(Decimal(38,
+ 4)),
+
+    `sales_target` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt` Nullable(Int32),
+
+    `vip_retail_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothes_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_in_season` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_have_customer` Nullable(Int32),
+
+    `customer_cnt` Nullable(Int32),
+
+    `new_sku_discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_upt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `inv_qty` Nullable(Int32),
+
+    `vip_repurchase_cnt` Nullable(Int32),
+
+    `large_screen_sale_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `skuEfficency_sc_label` Nullable(String),
+
+    `task_tgt_qty` Nullable(Int32),
+
+    `yun_store_sale_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_for_upt` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `deal_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt` Nullable(Int32),
+
+    `new_consume_member_qty_similar` Nullable(Int32),
+
+    `yun_store_sale_amt` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty` Nullable(Int32),
+
+    `singular_discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `taskExecuteRate_sc_label` Nullable(String),
+
+    `total_amount_similar` Nullable(Decimal(38,
+ 4)),
+
+    `new_good_dynamic_rate_mom` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_cnt_similar_mom` Nullable(Int32),
+
+    `inv_sale_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `upt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `aur_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sku_unbroken_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_sales_qty_mom` Nullable(Int32),
+
+    `top50_sales_inv_match_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `thousand_retail_cnt_pct_mom` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_duration_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_mom` Nullable(Int32),
+
+    `top50_match_cnt_mom` Nullable(Int32),
+
+    `sales_amt_actual_in_season_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `issue_qty_mom` Nullable(Int32),
+
+    `numOfPurMember_sc_label_mom` Nullable(String),
+
+    `top_sales_upt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_mom` Nullable(Int32),
+
+    `vip_retail_pct_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shop_area_mom` Nullable(Decimal(38,
+ 4)),
+
+    `exec_qty_mom` Nullable(Int32),
+
+    `gw_retail_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `couponUsageRate_sc_label_mom` Nullable(String),
+
+    `plural_tot_amt_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `numOfPurNewMember_sc_label_mom` Nullable(String),
+
+    `salesOfInSeason_sc_label_mom` Nullable(String),
+
+    `consume_member_qty_mom` Nullable(Int32),
+
+    `avg_unit_inv_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_retail_cnt_mom` Nullable(Int32),
+
+    `retial_cnt_per_staff_similar_mom` Nullable(Int32),
+
+    `sales_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inv_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_qty_mom` Nullable(Int32),
+
+    `top50_art_no_cnt_mom` Nullable(Int32),
+
+    `topFullSizeRate_sc_label_mom` Nullable(String),
+
+    `plural_tot_amt_actual_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sale_deep_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_tot_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `yun_store_sale_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_similar_mom` Nullable(Int32),
+
+    `sales_sc_label_mom` Nullable(String),
+
+    `shoes_clothes_ratio_mom` Nullable(Decimal(38,
+ 4)),
+
+    `matchDegTopProduct_sc_label_mom` Nullable(String),
+
+    `new_consume_member_qty_mom` Nullable(Int32),
+
+    `atv_sc_label_mom` Nullable(String),
+
+    `consume_member_qty_similar_mom` Nullable(Int32),
+
+    `cr_sc_label_mom` Nullable(String),
+
+    `numOfPurExistMember_sc_label_mom` Nullable(String),
+
+    `old_consume_member_qty_mom` Nullable(Int32),
+
+    `singular_tot_amt_list_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `upt_excl_acc_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sales_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `dynamic_sale_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `total_sku_cnt_mom` Nullable(Int32),
+
+    `new_good_dynamic_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `old_consume_member_qty_similar_mom` Nullable(Int32),
+
+    `atv_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `exec_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_qty_ge2_receipt_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `have_sale_staff_cnt_mom` Nullable(Int32),
+
+    `amt_ge1000_receipt_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `md_sc_label_mom` Nullable(String),
+
+    `plural_discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_diff_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `salesTnumStaffs_sc_label_mom` Nullable(String),
+
+    `plural_tot_amt_list_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top50_is_homo_cnt_mom` Nullable(Int32),
+
+    `sales_sku_cnt_mom` Nullable(Int32),
+
+    `singular_tot_amt_actual_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `upt_sc_label_mom` Nullable(String),
+
+    `topSalesPct_sc_label_mom` Nullable(String),
+
+    `vip_repurchase_duration_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inv_sale_rate_mom` Nullable(Decimal(38,
+ 4)),
+
+    `two_pairs_shoes_retail_cnt_pct_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_target_mom` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_mom` Nullable(Int32),
+
+    `vip_retail_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothes_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_in_season_mom` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_have_customer_mom` Nullable(Int32),
+
+    `customer_cnt_mom` Nullable(Int32),
+
+    `new_sku_discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_upt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inv_qty_mom` Nullable(Int32),
+
+    `vip_repurchase_cnt_mom` Nullable(Int32),
+
+    `large_screen_sale_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `skuEfficency_sc_label_mom` Nullable(String),
+
+    `task_tgt_qty_mom` Nullable(Int32),
+
+    `yun_store_sale_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_for_upt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `deal_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_mom` Nullable(Int32),
+
+    `new_consume_member_qty_similar_mom` Nullable(Int32),
+
+    `yun_store_sale_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_mom` Nullable(Int32),
+
+    `singular_discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_mom` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `taskExecuteRate_sc_label_mom` Nullable(String),
+
+    `total_amount_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `new_good_dynamic_rate_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_cnt_similar_yoy` Nullable(Int32),
+
+    `inv_sale_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `upt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `aur_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sku_unbroken_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_sales_qty_yoy` Nullable(Int32),
+
+    `top50_sales_inv_match_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `thousand_retail_cnt_pct_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_duration_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_yoy` Nullable(Int32),
+
+    `top50_match_cnt_yoy` Nullable(Int32),
+
+    `sales_amt_actual_in_season_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `issue_qty_yoy` Nullable(Int32),
+
+    `numOfPurMember_sc_label_yoy` Nullable(String),
+
+    `top_sales_upt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_yoy` Nullable(Int32),
+
+    `vip_retail_pct_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shop_area_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `exec_qty_yoy` Nullable(Int32),
+
+    `gw_retail_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `couponUsageRate_sc_label_yoy` Nullable(String),
+
+    `plural_tot_amt_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `numOfPurNewMember_sc_label_yoy` Nullable(String),
+
+    `salesOfInSeason_sc_label_yoy` Nullable(String),
+
+    `consume_member_qty_yoy` Nullable(Int32),
+
+    `avg_unit_inv_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_retail_cnt_yoy` Nullable(Int32),
+
+    `retial_cnt_per_staff_similar_yoy` Nullable(Int32),
+
+    `sales_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inv_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_qty_yoy` Nullable(Int32),
+
+    `top50_art_no_cnt_yoy` Nullable(Int32),
+
+    `topFullSizeRate_sc_label_yoy` Nullable(String),
+
+    `plural_tot_amt_actual_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sale_deep_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_tot_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `yun_store_sale_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_similar_yoy` Nullable(Int32),
+
+    `sales_sc_label_yoy` Nullable(String),
+
+    `shoes_clothes_ratio_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `matchDegTopProduct_sc_label_yoy` Nullable(String),
+
+    `new_consume_member_qty_yoy` Nullable(Int32),
+
+    `atv_sc_label_yoy` Nullable(String),
+
+    `consume_member_qty_similar_yoy` Nullable(Int32),
+
+    `cr_sc_label_yoy` Nullable(String),
+
+    `numOfPurExistMember_sc_label_yoy` Nullable(String),
+
+    `old_consume_member_qty_yoy` Nullable(Int32),
+
+    `singular_tot_amt_list_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `upt_excl_acc_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sales_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `dynamic_sale_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `total_sku_cnt_yoy` Nullable(Int32),
+
+    `new_good_dynamic_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `old_consume_member_qty_similar_yoy` Nullable(Int32),
+
+    `atv_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `exec_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_qty_ge2_receipt_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `have_sale_staff_cnt_yoy` Nullable(Int32),
+
+    `amt_ge1000_receipt_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `md_sc_label_yoy` Nullable(String),
+
+    `plural_discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_diff_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `salesTnumStaffs_sc_label_yoy` Nullable(String),
+
+    `plural_tot_amt_list_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top50_is_homo_cnt_yoy` Nullable(Int32),
+
+    `sales_sku_cnt_yoy` Nullable(Int32),
+
+    `singular_tot_amt_actual_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `upt_sc_label_yoy` Nullable(String),
+
+    `topSalesPct_sc_label_yoy` Nullable(String),
+
+    `vip_repurchase_duration_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inv_sale_rate_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `two_pairs_shoes_retail_cnt_pct_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_target_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_yoy` Nullable(Int32),
+
+    `vip_retail_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothes_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_in_season_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_have_customer_yoy` Nullable(Int32),
+
+    `customer_cnt_yoy` Nullable(Int32),
+
+    `new_sku_discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_upt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inv_qty_yoy` Nullable(Int32),
+
+    `vip_repurchase_cnt_yoy` Nullable(Int32),
+
+    `large_screen_sale_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `skuEfficency_sc_label_yoy` Nullable(String),
+
+    `task_tgt_qty_yoy` Nullable(Int32),
+
+    `yun_store_sale_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_for_upt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `deal_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_yoy` Nullable(Int32),
+
+    `new_consume_member_qty_similar_yoy` Nullable(Int32),
+
+    `yun_store_sale_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_yoy` Nullable(Int32),
+
+    `singular_discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `taskExecuteRate_sc_label_yoy` Nullable(String),
+
+    `total_amount_similar_yoy` Nullable(Decimal(38,
+ 4))
+)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/{group}/tables/one/retail_consultant_db/t_ads_wide_store_daily',
+ '{replica}')
+PARTITION BY stats_date
+ORDER BY (tenant_id,
+ store_id,
+ cms_code,
+ brand_name,
+ stats_date)
+SETTINGS index_granularity = 8192;
+
+===============================================================================================
+
+-- retail_consultant_db.t_ads_wide_store_weekly definition
+
+CREATE TABLE retail_consultant_db.t_ads_wide_store_weekly
+(
+
+    `cms_code` String,
+
+    `brand_store_code` String,
+
+    `temperature_area` String,
+
+    `store_nature` String,
+
+    `store_type_name` String,
+
+    `shopLevel_adjust` String,
+
+    `org_branch_name` String,
+
+    `stats_date` String,
+
+    `name` String,
+
+    `address` String,
+
+    `province_name` String,
+
+    `join_type` String,
+
+    `company_type` String,
+
+    `store_id` UInt64,
+
+    `key_store` UInt8,
+
+    `opening_date` Date,
+
+    `store_type` String,
+
+    `expand_type` String,
+
+    `store_image_name` String,
+
+    `rack_type` String,
+
+    `channel_brand_code` String,
+
+    `city_name` String,
+
+    `tenant_id` String,
+
+    `is_retail` UInt8,
+
+    `district_name` String,
+
+    `level` String,
+
+    `org_office_name` String,
+
+    `brand_name` String,
+
+    `store_level_name` String,
+
+    `org_area_name` String,
+
+    `business_status` String,
+
+    `new_good_dynamic_rate` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_cnt_similar` Nullable(Int32),
+
+    `inv_sale_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `upt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar` Nullable(Decimal(38,
+ 4)),
+
+    `aur_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sku_unbroken_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_sales_qty` Nullable(Int32),
+
+    `top50_sales_inv_match_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `thousand_retail_cnt_pct` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_duration_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt` Nullable(Int32),
+
+    `top50_match_cnt` Nullable(Int32),
+
+    `sales_amt_actual_in_season` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `issue_qty` Nullable(Int32),
+
+    `numOfPurMember_sc_label` Nullable(String),
+
+    `top_sales_upt` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt` Nullable(Int32),
+
+    `vip_retail_pct` Nullable(Decimal(38,
+ 4)),
+
+    `shop_area` Nullable(Decimal(38,
+ 4)),
+
+    `exec_qty` Nullable(Int32),
+
+    `gw_retail_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `couponUsageRate_sc_label` Nullable(String),
+
+    `plural_tot_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_similar` Nullable(Decimal(38,
+ 4)),
+
+    `numOfPurNewMember_sc_label` Nullable(String),
+
+    `salesOfInSeason_sc_label` Nullable(String),
+
+    `consume_member_qty` Nullable(Int32),
+
+    `avg_unit_inv_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_retail_cnt` Nullable(Int32),
+
+    `retial_cnt_per_staff_similar` Nullable(Int32),
+
+    `sales_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `inv_amt` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_qty` Nullable(Int32),
+
+    `top50_art_no_cnt` Nullable(Int32),
+
+    `topFullSizeRate_sc_label` Nullable(String),
+
+    `plural_tot_amt_actual_similar` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt` Nullable(Decimal(38,
+ 4)),
+
+    `sale_deep_similar` Nullable(Decimal(38,
+ 4)),
+
+    `plural_tot_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `yun_store_sale_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_similar` Nullable(Int32),
+
+    `sales_sc_label` Nullable(String),
+
+    `shoes_clothes_ratio` Nullable(Decimal(38,
+ 4)),
+
+    `matchDegTopProduct_sc_label` Nullable(String),
+
+    `new_consume_member_qty` Nullable(Int32),
+
+    `atv_sc_label` Nullable(String),
+
+    `consume_member_qty_similar` Nullable(Int32),
+
+    `cr_sc_label` Nullable(String),
+
+    `numOfPurExistMember_sc_label` Nullable(String),
+
+    `old_consume_member_qty` Nullable(Int32),
+
+    `singular_tot_amt_list` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `upt_excl_acc_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sales_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `dynamic_sale_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `total_sku_cnt` Nullable(Int32),
+
+    `new_good_dynamic_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `old_consume_member_qty_similar` Nullable(Int32),
+
+    `atv_similar` Nullable(Decimal(38,
+ 4)),
+
+    `exec_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_qty_ge2_receipt_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `have_sale_staff_cnt` Nullable(Int32),
+
+    `amt_ge1000_receipt_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `md_sc_label` Nullable(String),
+
+    `plural_discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_diff_similar` Nullable(Decimal(38,
+ 4)),
+
+    `salesTnumStaffs_sc_label` Nullable(String),
+
+    `plural_tot_amt_list` Nullable(Decimal(38,
+ 4)),
+
+    `top50_is_homo_cnt` Nullable(Int32),
+
+    `sales_sku_cnt` Nullable(Int32),
+
+    `singular_tot_amt_actual_similar` Nullable(Decimal(38,
+ 4)),
+
+    `upt_sc_label` Nullable(String),
+
+    `topSalesPct_sc_label` Nullable(String),
+
+    `vip_repurchase_duration` Nullable(Decimal(38,
+ 4)),
+
+    `inv_sale_rate` Nullable(Decimal(38,
+ 4)),
+
+    `two_pairs_shoes_retail_cnt_pct` Nullable(Decimal(38,
+ 4)),
+
+    `sales_target` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt` Nullable(Int32),
+
+    `vip_retail_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothes_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_in_season` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_have_customer` Nullable(Int32),
+
+    `customer_cnt` Nullable(Int32),
+
+    `new_sku_discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_upt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `inv_qty` Nullable(Int32),
+
+    `vip_repurchase_cnt` Nullable(Int32),
+
+    `large_screen_sale_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `skuEfficency_sc_label` Nullable(String),
+
+    `task_tgt_qty` Nullable(Int32),
+
+    `yun_store_sale_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_for_upt` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `deal_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt` Nullable(Int32),
+
+    `new_consume_member_qty_similar` Nullable(Int32),
+
+    `yun_store_sale_amt` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty` Nullable(Int32),
+
+    `singular_discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `taskExecuteRate_sc_label` Nullable(String),
+
+    `total_amount_similar` Nullable(Decimal(38,
+ 4)),
+
+    `new_good_dynamic_rate_mom` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_cnt_similar_mom` Nullable(Int32),
+
+    `inv_sale_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `upt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `aur_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sku_unbroken_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_sales_qty_mom` Nullable(Int32),
+
+    `top50_sales_inv_match_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `thousand_retail_cnt_pct_mom` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_duration_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_mom` Nullable(Int32),
+
+    `top50_match_cnt_mom` Nullable(Int32),
+
+    `sales_amt_actual_in_season_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `issue_qty_mom` Nullable(Int32),
+
+    `numOfPurMember_sc_label_mom` Nullable(String),
+
+    `top_sales_upt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_mom` Nullable(Int32),
+
+    `vip_retail_pct_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shop_area_mom` Nullable(Decimal(38,
+ 4)),
+
+    `exec_qty_mom` Nullable(Int32),
+
+    `gw_retail_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `couponUsageRate_sc_label_mom` Nullable(String),
+
+    `plural_tot_amt_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `numOfPurNewMember_sc_label_mom` Nullable(String),
+
+    `salesOfInSeason_sc_label_mom` Nullable(String),
+
+    `consume_member_qty_mom` Nullable(Int32),
+
+    `avg_unit_inv_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_retail_cnt_mom` Nullable(Int32),
+
+    `retial_cnt_per_staff_similar_mom` Nullable(Int32),
+
+    `sales_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inv_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_qty_mom` Nullable(Int32),
+
+    `top50_art_no_cnt_mom` Nullable(Int32),
+
+    `topFullSizeRate_sc_label_mom` Nullable(String),
+
+    `plural_tot_amt_actual_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sale_deep_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_tot_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `yun_store_sale_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_similar_mom` Nullable(Int32),
+
+    `sales_sc_label_mom` Nullable(String),
+
+    `shoes_clothes_ratio_mom` Nullable(Decimal(38,
+ 4)),
+
+    `matchDegTopProduct_sc_label_mom` Nullable(String),
+
+    `new_consume_member_qty_mom` Nullable(Int32),
+
+    `atv_sc_label_mom` Nullable(String),
+
+    `consume_member_qty_similar_mom` Nullable(Int32),
+
+    `cr_sc_label_mom` Nullable(String),
+
+    `numOfPurExistMember_sc_label_mom` Nullable(String),
+
+    `old_consume_member_qty_mom` Nullable(Int32),
+
+    `singular_tot_amt_list_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `upt_excl_acc_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sales_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `dynamic_sale_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `total_sku_cnt_mom` Nullable(Int32),
+
+    `new_good_dynamic_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `old_consume_member_qty_similar_mom` Nullable(Int32),
+
+    `atv_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `exec_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_qty_ge2_receipt_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `have_sale_staff_cnt_mom` Nullable(Int32),
+
+    `amt_ge1000_receipt_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `md_sc_label_mom` Nullable(String),
+
+    `plural_discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_diff_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `salesTnumStaffs_sc_label_mom` Nullable(String),
+
+    `plural_tot_amt_list_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top50_is_homo_cnt_mom` Nullable(Int32),
+
+    `sales_sku_cnt_mom` Nullable(Int32),
+
+    `singular_tot_amt_actual_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `upt_sc_label_mom` Nullable(String),
+
+    `topSalesPct_sc_label_mom` Nullable(String),
+
+    `vip_repurchase_duration_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inv_sale_rate_mom` Nullable(Decimal(38,
+ 4)),
+
+    `two_pairs_shoes_retail_cnt_pct_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_target_mom` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_mom` Nullable(Int32),
+
+    `vip_retail_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothes_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_in_season_mom` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_have_customer_mom` Nullable(Int32),
+
+    `customer_cnt_mom` Nullable(Int32),
+
+    `new_sku_discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_upt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inv_qty_mom` Nullable(Int32),
+
+    `vip_repurchase_cnt_mom` Nullable(Int32),
+
+    `large_screen_sale_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `skuEfficency_sc_label_mom` Nullable(String),
+
+    `task_tgt_qty_mom` Nullable(Int32),
+
+    `yun_store_sale_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_for_upt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `deal_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_mom` Nullable(Int32),
+
+    `new_consume_member_qty_similar_mom` Nullable(Int32),
+
+    `yun_store_sale_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_mom` Nullable(Int32),
+
+    `singular_discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_mom` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `taskExecuteRate_sc_label_mom` Nullable(String),
+
+    `total_amount_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `new_good_dynamic_rate_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_cnt_similar_yoy` Nullable(Int32),
+
+    `inv_sale_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `upt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `aur_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sku_unbroken_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_sales_qty_yoy` Nullable(Int32),
+
+    `top50_sales_inv_match_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `thousand_retail_cnt_pct_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_duration_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_yoy` Nullable(Int32),
+
+    `top50_match_cnt_yoy` Nullable(Int32),
+
+    `sales_amt_actual_in_season_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `issue_qty_yoy` Nullable(Int32),
+
+    `numOfPurMember_sc_label_yoy` Nullable(String),
+
+    `top_sales_upt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_yoy` Nullable(Int32),
+
+    `vip_retail_pct_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shop_area_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `exec_qty_yoy` Nullable(Int32),
+
+    `gw_retail_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `couponUsageRate_sc_label_yoy` Nullable(String),
+
+    `plural_tot_amt_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `numOfPurNewMember_sc_label_yoy` Nullable(String),
+
+    `salesOfInSeason_sc_label_yoy` Nullable(String),
+
+    `consume_member_qty_yoy` Nullable(Int32),
+
+    `avg_unit_inv_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_retail_cnt_yoy` Nullable(Int32),
+
+    `retial_cnt_per_staff_similar_yoy` Nullable(Int32),
+
+    `sales_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inv_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_qty_yoy` Nullable(Int32),
+
+    `top50_art_no_cnt_yoy` Nullable(Int32),
+
+    `topFullSizeRate_sc_label_yoy` Nullable(String),
+
+    `plural_tot_amt_actual_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sale_deep_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_tot_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `yun_store_sale_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_similar_yoy` Nullable(Int32),
+
+    `sales_sc_label_yoy` Nullable(String),
+
+    `shoes_clothes_ratio_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `matchDegTopProduct_sc_label_yoy` Nullable(String),
+
+    `new_consume_member_qty_yoy` Nullable(Int32),
+
+    `atv_sc_label_yoy` Nullable(String),
+
+    `consume_member_qty_similar_yoy` Nullable(Int32),
+
+    `cr_sc_label_yoy` Nullable(String),
+
+    `numOfPurExistMember_sc_label_yoy` Nullable(String),
+
+    `old_consume_member_qty_yoy` Nullable(Int32),
+
+    `singular_tot_amt_list_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `upt_excl_acc_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sales_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `dynamic_sale_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `total_sku_cnt_yoy` Nullable(Int32),
+
+    `new_good_dynamic_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `old_consume_member_qty_similar_yoy` Nullable(Int32),
+
+    `atv_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `exec_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_qty_ge2_receipt_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `have_sale_staff_cnt_yoy` Nullable(Int32),
+
+    `amt_ge1000_receipt_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `md_sc_label_yoy` Nullable(String),
+
+    `plural_discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_diff_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `salesTnumStaffs_sc_label_yoy` Nullable(String),
+
+    `plural_tot_amt_list_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top50_is_homo_cnt_yoy` Nullable(Int32),
+
+    `sales_sku_cnt_yoy` Nullable(Int32),
+
+    `singular_tot_amt_actual_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `upt_sc_label_yoy` Nullable(String),
+
+    `topSalesPct_sc_label_yoy` Nullable(String),
+
+    `vip_repurchase_duration_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inv_sale_rate_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `two_pairs_shoes_retail_cnt_pct_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_target_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_yoy` Nullable(Int32),
+
+    `vip_retail_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothes_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_in_season_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_have_customer_yoy` Nullable(Int32),
+
+    `customer_cnt_yoy` Nullable(Int32),
+
+    `new_sku_discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_upt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inv_qty_yoy` Nullable(Int32),
+
+    `vip_repurchase_cnt_yoy` Nullable(Int32),
+
+    `large_screen_sale_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `skuEfficency_sc_label_yoy` Nullable(String),
+
+    `task_tgt_qty_yoy` Nullable(Int32),
+
+    `yun_store_sale_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_for_upt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `deal_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_yoy` Nullable(Int32),
+
+    `new_consume_member_qty_similar_yoy` Nullable(Int32),
+
+    `yun_store_sale_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_yoy` Nullable(Int32),
+
+    `singular_discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `taskExecuteRate_sc_label_yoy` Nullable(String),
+
+    `total_amount_similar_yoy` Nullable(Decimal(38,
+ 4))
+)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/{group}/tables/one/retail_consultant_db/t_ads_wide_store_weekly',
+ '{replica}')
+PARTITION BY stats_date
+ORDER BY (tenant_id,
+ store_id,
+ cms_code,
+ brand_name,
+ stats_date)
+SETTINGS index_granularity = 8192;
+
+============================================================================================================
+
+-- retail_consultant_db.t_ads_wide_store_monthly definition
+
+CREATE TABLE retail_consultant_db.t_ads_wide_store_monthly
+(
+
+    `cms_code` String,
+
+    `brand_store_code` String,
+
+    `temperature_area` String,
+
+    `store_nature` String,
+
+    `store_type_name` String,
+
+    `shopLevel_adjust` String,
+
+    `org_branch_name` String,
+
+    `stats_date` String,
+
+    `name` String,
+
+    `address` String,
+
+    `province_name` String,
+
+    `join_type` String,
+
+    `company_type` String,
+
+    `store_id` UInt64,
+
+    `key_store` UInt8,
+
+    `opening_date` Date,
+
+    `store_type` String,
+
+    `expand_type` String,
+
+    `store_image_name` String,
+
+    `rack_type` String,
+
+    `channel_brand_code` String,
+
+    `city_name` String,
+
+    `tenant_id` String,
+
+    `is_retail` UInt8,
+
+    `district_name` String,
+
+    `level` String,
+
+    `org_office_name` String,
+
+    `brand_name` String,
+
+    `store_level_name` String,
+
+    `org_area_name` String,
+
+    `business_status` String,
+
+    `new_good_dynamic_rate` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_cnt_similar` Nullable(Int32),
+
+    `inv_sale_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `upt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar` Nullable(Decimal(38,
+ 4)),
+
+    `aur_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sku_unbroken_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_sales_qty` Nullable(Int32),
+
+    `top50_sales_inv_match_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `thousand_retail_cnt_pct` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_duration_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt` Nullable(Int32),
+
+    `top50_match_cnt` Nullable(Int32),
+
+    `sales_amt_actual_in_season` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `issue_qty` Nullable(Int32),
+
+    `numOfPurMember_sc_label` Nullable(String),
+
+    `top_sales_upt` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt` Nullable(Int32),
+
+    `vip_retail_pct` Nullable(Decimal(38,
+ 4)),
+
+    `shop_area` Nullable(Decimal(38,
+ 4)),
+
+    `exec_qty` Nullable(Int32),
+
+    `gw_retail_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `couponUsageRate_sc_label` Nullable(String),
+
+    `plural_tot_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_similar` Nullable(Decimal(38,
+ 4)),
+
+    `numOfPurNewMember_sc_label` Nullable(String),
+
+    `salesOfInSeason_sc_label` Nullable(String),
+
+    `consume_member_qty` Nullable(Int32),
+
+    `avg_unit_inv_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_retail_cnt` Nullable(Int32),
+
+    `retial_cnt_per_staff_similar` Nullable(Int32),
+
+    `sales_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `inv_amt` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_qty` Nullable(Int32),
+
+    `top50_art_no_cnt` Nullable(Int32),
+
+    `topFullSizeRate_sc_label` Nullable(String),
+
+    `plural_tot_amt_actual_similar` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt` Nullable(Decimal(38,
+ 4)),
+
+    `sale_deep_similar` Nullable(Decimal(38,
+ 4)),
+
+    `plural_tot_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `yun_store_sale_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_similar` Nullable(Int32),
+
+    `sales_sc_label` Nullable(String),
+
+    `shoes_clothes_ratio` Nullable(Decimal(38,
+ 4)),
+
+    `matchDegTopProduct_sc_label` Nullable(String),
+
+    `new_consume_member_qty` Nullable(Int32),
+
+    `atv_sc_label` Nullable(String),
+
+    `consume_member_qty_similar` Nullable(Int32),
+
+    `cr_sc_label` Nullable(String),
+
+    `numOfPurExistMember_sc_label` Nullable(String),
+
+    `old_consume_member_qty` Nullable(Int32),
+
+    `singular_tot_amt_list` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_list_similar` Nullable(Decimal(38,
+ 4)),
+
+    `upt_excl_acc_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sales_amt_actual` Nullable(Decimal(38,
+ 4)),
+
+    `dynamic_sale_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `total_sku_cnt` Nullable(Int32),
+
+    `new_good_dynamic_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `old_consume_member_qty_similar` Nullable(Int32),
+
+    `atv_similar` Nullable(Decimal(38,
+ 4)),
+
+    `exec_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_qty_ge2_receipt_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `have_sale_staff_cnt` Nullable(Int32),
+
+    `amt_ge1000_receipt_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `md_sc_label` Nullable(String),
+
+    `plural_discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_diff_similar` Nullable(Decimal(38,
+ 4)),
+
+    `salesTnumStaffs_sc_label` Nullable(String),
+
+    `plural_tot_amt_list` Nullable(Decimal(38,
+ 4)),
+
+    `top50_is_homo_cnt` Nullable(Int32),
+
+    `sales_sku_cnt` Nullable(Int32),
+
+    `singular_tot_amt_actual_similar` Nullable(Decimal(38,
+ 4)),
+
+    `upt_sc_label` Nullable(String),
+
+    `topSalesPct_sc_label` Nullable(String),
+
+    `vip_repurchase_duration` Nullable(Decimal(38,
+ 4)),
+
+    `inv_sale_rate` Nullable(Decimal(38,
+ 4)),
+
+    `two_pairs_shoes_retail_cnt_pct` Nullable(Decimal(38,
+ 4)),
+
+    `sales_target` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt` Nullable(Int32),
+
+    `vip_retail_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothes_ratio_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_in_season` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_have_customer` Nullable(Int32),
+
+    `customer_cnt` Nullable(Int32),
+
+    `new_sku_discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_upt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `inv_qty` Nullable(Int32),
+
+    `vip_repurchase_cnt` Nullable(Int32),
+
+    `large_screen_sale_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `skuEfficency_sc_label` Nullable(String),
+
+    `task_tgt_qty` Nullable(Int32),
+
+    `yun_store_sale_amt_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_for_upt` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `deal_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_pct_similar` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt` Nullable(Int32),
+
+    `new_consume_member_qty_similar` Nullable(Int32),
+
+    `yun_store_sale_amt` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty` Nullable(Int32),
+
+    `singular_discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_similar` Nullable(Decimal(38,
+ 4)),
+
+    `taskExecuteRate_sc_label` Nullable(String),
+
+    `total_amount_similar` Nullable(Decimal(38,
+ 4)),
+
+    `new_good_dynamic_rate_mom` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_cnt_similar_mom` Nullable(Int32),
+
+    `inv_sale_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `upt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `aur_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sku_unbroken_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_sales_qty_mom` Nullable(Int32),
+
+    `top50_sales_inv_match_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `thousand_retail_cnt_pct_mom` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_duration_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_mom` Nullable(Int32),
+
+    `top50_match_cnt_mom` Nullable(Int32),
+
+    `sales_amt_actual_in_season_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `issue_qty_mom` Nullable(Int32),
+
+    `numOfPurMember_sc_label_mom` Nullable(String),
+
+    `top_sales_upt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_mom` Nullable(Int32),
+
+    `vip_retail_pct_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shop_area_mom` Nullable(Decimal(38,
+ 4)),
+
+    `exec_qty_mom` Nullable(Int32),
+
+    `gw_retail_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `couponUsageRate_sc_label_mom` Nullable(String),
+
+    `plural_tot_amt_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `numOfPurNewMember_sc_label_mom` Nullable(String),
+
+    `salesOfInSeason_sc_label_mom` Nullable(String),
+
+    `consume_member_qty_mom` Nullable(Int32),
+
+    `avg_unit_inv_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_retail_cnt_mom` Nullable(Int32),
+
+    `retial_cnt_per_staff_similar_mom` Nullable(Int32),
+
+    `sales_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inv_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_qty_mom` Nullable(Int32),
+
+    `top50_art_no_cnt_mom` Nullable(Int32),
+
+    `topFullSizeRate_sc_label_mom` Nullable(String),
+
+    `plural_tot_amt_actual_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sale_deep_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_tot_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `yun_store_sale_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_similar_mom` Nullable(Int32),
+
+    `sales_sc_label_mom` Nullable(String),
+
+    `shoes_clothes_ratio_mom` Nullable(Decimal(38,
+ 4)),
+
+    `matchDegTopProduct_sc_label_mom` Nullable(String),
+
+    `new_consume_member_qty_mom` Nullable(Int32),
+
+    `atv_sc_label_mom` Nullable(String),
+
+    `consume_member_qty_similar_mom` Nullable(Int32),
+
+    `cr_sc_label_mom` Nullable(String),
+
+    `numOfPurExistMember_sc_label_mom` Nullable(String),
+
+    `old_consume_member_qty_mom` Nullable(Int32),
+
+    `singular_tot_amt_list_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_list_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `upt_excl_acc_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sales_amt_actual_mom` Nullable(Decimal(38,
+ 4)),
+
+    `dynamic_sale_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `total_sku_cnt_mom` Nullable(Int32),
+
+    `new_good_dynamic_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `old_consume_member_qty_similar_mom` Nullable(Int32),
+
+    `atv_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `exec_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_qty_ge2_receipt_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `have_sale_staff_cnt_mom` Nullable(Int32),
+
+    `amt_ge1000_receipt_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `md_sc_label_mom` Nullable(String),
+
+    `plural_discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_diff_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `salesTnumStaffs_sc_label_mom` Nullable(String),
+
+    `plural_tot_amt_list_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top50_is_homo_cnt_mom` Nullable(Int32),
+
+    `sales_sku_cnt_mom` Nullable(Int32),
+
+    `singular_tot_amt_actual_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `upt_sc_label_mom` Nullable(String),
+
+    `topSalesPct_sc_label_mom` Nullable(String),
+
+    `vip_repurchase_duration_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inv_sale_rate_mom` Nullable(Decimal(38,
+ 4)),
+
+    `two_pairs_shoes_retail_cnt_pct_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_target_mom` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_mom` Nullable(Int32),
+
+    `vip_retail_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothes_ratio_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_in_season_mom` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_have_customer_mom` Nullable(Int32),
+
+    `customer_cnt_mom` Nullable(Int32),
+
+    `new_sku_discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_upt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `inv_qty_mom` Nullable(Int32),
+
+    `vip_repurchase_cnt_mom` Nullable(Int32),
+
+    `large_screen_sale_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `skuEfficency_sc_label_mom` Nullable(String),
+
+    `task_tgt_qty_mom` Nullable(Int32),
+
+    `yun_store_sale_amt_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_for_upt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `deal_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_pct_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_mom` Nullable(Int32),
+
+    `new_consume_member_qty_similar_mom` Nullable(Int32),
+
+    `yun_store_sale_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_mom` Nullable(Int32),
+
+    `singular_discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_mom` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `taskExecuteRate_sc_label_mom` Nullable(String),
+
+    `total_amount_similar_mom` Nullable(Decimal(38,
+ 4)),
+
+    `new_good_dynamic_rate_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_cnt_similar_yoy` Nullable(Int32),
+
+    `inv_sale_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `upt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_per_staff_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `aur_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sku_unbroken_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `one_to_seven_dynamic_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_sales_qty_yoy` Nullable(Int32),
+
+    `top50_sales_inv_match_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `thousand_retail_cnt_pct_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `vip_repurchase_duration_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_yoy` Nullable(Int32),
+
+    `top50_match_cnt_yoy` Nullable(Int32),
+
+    `sales_amt_actual_in_season_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `issue_qty_yoy` Nullable(Int32),
+
+    `numOfPurMember_sc_label_yoy` Nullable(String),
+
+    `top_sales_upt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_yoy` Nullable(Int32),
+
+    `vip_retail_pct_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shop_area_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `exec_qty_yoy` Nullable(Int32),
+
+    `gw_retail_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `couponUsageRate_sc_label_yoy` Nullable(String),
+
+    `plural_tot_amt_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `numOfPurNewMember_sc_label_yoy` Nullable(String),
+
+    `salesOfInSeason_sc_label_yoy` Nullable(String),
+
+    `consume_member_qty_yoy` Nullable(Int32),
+
+    `avg_unit_inv_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothing_retail_cnt_yoy` Nullable(Int32),
+
+    `retial_cnt_per_staff_similar_yoy` Nullable(Int32),
+
+    `sales_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inv_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `write_off_qty_yoy` Nullable(Int32),
+
+    `top50_art_no_cnt_yoy` Nullable(Int32),
+
+    `topFullSizeRate_sc_label_yoy` Nullable(String),
+
+    `plural_tot_amt_actual_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sale_deep_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_tot_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inside_outside_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `yun_store_sale_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `stay_sku_cnt_similar_yoy` Nullable(Int32),
+
+    `sales_sc_label_yoy` Nullable(String),
+
+    `shoes_clothes_ratio_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `matchDegTopProduct_sc_label_yoy` Nullable(String),
+
+    `new_consume_member_qty_yoy` Nullable(Int32),
+
+    `atv_sc_label_yoy` Nullable(String),
+
+    `consume_member_qty_similar_yoy` Nullable(Int32),
+
+    `cr_sc_label_yoy` Nullable(String),
+
+    `numOfPurExistMember_sc_label_yoy` Nullable(String),
+
+    `old_consume_member_qty_yoy` Nullable(Int32),
+
+    `singular_tot_amt_list_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_tot_amt_list_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `upt_excl_acc_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_amt_actual_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top50_sales_amt_actual_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `dynamic_sale_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `total_sku_cnt_yoy` Nullable(Int32),
+
+    `new_good_dynamic_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `old_consume_member_qty_similar_yoy` Nullable(Int32),
+
+    `atv_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `exec_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_qty_ge2_receipt_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `have_sale_staff_cnt_yoy` Nullable(Int32),
+
+    `amt_ge1000_receipt_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `md_sc_label_yoy` Nullable(String),
+
+    `plural_discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_diff_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `salesTnumStaffs_sc_label_yoy` Nullable(String),
+
+    `plural_tot_amt_list_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top50_is_homo_cnt_yoy` Nullable(Int32),
+
+    `sales_sku_cnt_yoy` Nullable(Int32),
+
+    `singular_tot_amt_actual_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `upt_sc_label_yoy` Nullable(String),
+
+    `topSalesPct_sc_label_yoy` Nullable(String),
+
+    `vip_repurchase_duration_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inv_sale_rate_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `two_pairs_shoes_retail_cnt_pct_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_target_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `large_screen_sale_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `singular_retail_cnt_yoy` Nullable(Int32),
+
+    `vip_retail_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `shoes_clothes_ratio_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_actual_in_season_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_in_season_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `retail_cnt_have_customer_yoy` Nullable(Int32),
+
+    `customer_cnt_yoy` Nullable(Int32),
+
+    `new_sku_discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `top_sales_upt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `inv_qty_yoy` Nullable(Int32),
+
+    `vip_repurchase_cnt_yoy` Nullable(Int32),
+
+    `large_screen_sale_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `skuEfficency_sc_label_yoy` Nullable(String),
+
+    `task_tgt_qty_yoy` Nullable(Int32),
+
+    `yun_store_sale_amt_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_for_upt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `deal_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `offline_amt_pct_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `plural_retail_cnt_yoy` Nullable(Int32),
+
+    `new_consume_member_qty_similar_yoy` Nullable(Int32),
+
+    `yun_store_sale_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `gw_retail_amt_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_qty_yoy` Nullable(Int32),
+
+    `singular_discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `sales_amt_list_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `discount_rate_similar_yoy` Nullable(Decimal(38,
+ 4)),
+
+    `taskExecuteRate_sc_label_yoy` Nullable(String),
+
+    `total_amount_similar_yoy` Nullable(Decimal(38,
+ 4))
+)
+ENGINE = ReplicatedReplacingMergeTree('/clickhouse/{group}/tables/one/retail_consultant_db/t_ads_wide_store_monthly',
+ '{replica}')
+PARTITION BY stats_date
+ORDER BY (tenant_id,
+ store_id,
+ cms_code,
+ brand_name,
+ stats_date)
+SETTINGS index_granularity = 8192;

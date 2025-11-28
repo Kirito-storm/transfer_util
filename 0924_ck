@@ -1,3 +1,3 @@
-ALTER TABLE dm_store_stats_daily ON CLUSTER cluster_single_shard ADD COLUMN `sales_amt_actual_pct` Nullable(Decimal(32,4)) COMMENT '零售金额达成率(零售金额÷目标值)';
-ALTER TABLE dm_store_stats_weekly ON CLUSTER cluster_single_shard ADD COLUMN `sales_amt_actual_pct` Nullable(Decimal(32,4)) COMMENT '零售金额达成率(零售金额÷目标值)';
-ALTER TABLE dm_store_stats_monthly ON CLUSTER cluster_single_shard ADD COLUMN `sales_amt_actual_pct` Nullable(Decimal(32,4)) COMMENT '零售金额达成率(零售金额÷目标值)';
+ALTER TABLE dm_store_stats_daily_tmp ADD COLUMN `sales_amt_actual_pct` decimal(10,4) DEFAULT NULL COMMENT '零售金额达成率(零售金额÷目标值)';
+ALTER TABLE dm_store_stats_weekly_tmp ADD COLUMN `sales_amt_actual_pct` decimal(10,4) DEFAULT NULL COMMENT '零售金额达成率(零售金额÷目标值)';
+ALTER TABLE dm_store_stats_monthly_tmp ADD COLUMN `sales_amt_actual_pct` decimal(10,4) DEFAULT NULL COMMENT '零售金额达成率(零售金额÷目标值)';

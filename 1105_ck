@@ -1,0 +1,40 @@
+------------------------------------------------------------------ 周 ---------------------------------------------------------------------------
+-- 新品动销率-同类值
+ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `new_good_dynamic_rate_similar` Nullable(Decimal(38,4)) COMMENT '新品动销率-同类值';
+-- 1-7天动销率-同类值
+ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `one_to_seven_dynamic_rate_similar` Nullable(Decimal(38,4)) COMMENT '1-7天动销率-同类值';
+-- 新品动销率-原始值
+ALTER TABLE dm_store_stats_weekly ON CLUSTER cluster_single_shard ADD COLUMN `new_good_dynamic_rate` Nullable(Decimal(38,4)) COMMENT '新品动销率';
+-- 1-7天动销率-原始值
+ALTER TABLE dm_store_stats_weekly ON CLUSTER cluster_single_shard ADD COLUMN `one_to_seven_dynamic_rate` Nullable(Decimal(38,4)) COMMENT '1-7天动销率';
+------------------------------------------------------------------ 周 ---------------------------------------------------------------------------
+
+------------------------------------------------------------------ 月 ---------------------------------------------------------------------------
+-- 新品动销率-同类值
+ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `new_good_dynamic_rate_similar` Nullable(Decimal(38,4)) COMMENT '新品动销率-同类值';
+-- 1-7天动销率-同类值
+ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `one_to_seven_dynamic_rate_similar` Nullable(Decimal(38,4)) COMMENT '1-7天动销率-同类值';
+-- 新品动销率-原始值
+ALTER TABLE dm_store_stats_monthly ON CLUSTER cluster_single_shard ADD COLUMN `new_good_dynamic_rate` Nullable(Decimal(38,4)) COMMENT '新品动销率';
+-- 1-7天动销率-原始值
+ALTER TABLE dm_store_stats_monthly ON CLUSTER cluster_single_shard ADD COLUMN `one_to_seven_dynamic_rate` Nullable(Decimal(38,4)) COMMENT '1-7天动销率';
+------------------------------------------------------------------ 月 ---------------------------------------------------------------------------
+
+------------------------------------------------------------------ 日 ---------------------------------------------------------------------------
+-- 新品动销率-同类值
+ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `new_good_dynamic_rate_similar` Nullable(Decimal(38,4)) COMMENT '新品动销率-同类值';
+-- 1-7天动销率-同类值
+ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `one_to_seven_dynamic_rate_similar` Nullable(Decimal(38,4)) COMMENT '1-7天动销率-同类值';
+-- 新品动销率-原始值
+ALTER TABLE dm_store_stats_daily ON CLUSTER cluster_single_shard ADD COLUMN `new_good_dynamic_rate` Nullable(Decimal(38,4)) COMMENT '新品动销率';
+-- 1-7天动销率-原始值
+ALTER TABLE dm_store_stats_daily ON CLUSTER cluster_single_shard ADD COLUMN `one_to_seven_dynamic_rate` Nullable(Decimal(38,4)) COMMENT '1-7天动销率';
+------------------------------------------------------------------ 日 ---------------------------------------------------------------------------
+
+------------------------------------------------------------------ 日 ---------------------------------------------------------------------------
+-- t_ads_store_daily_stats表添加新品动销率和1-7天动销率
+-- 新品动销率-原始值
+ALTER TABLE t_ads_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `new_good_dynamic_rate` Nullable(Decimal(38,4)) COMMENT '新品动销率';
+-- 1-7天动销率-原始值
+ALTER TABLE t_ads_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `one_to_seven_dynamic_rate` Nullable(Decimal(38,4)) COMMENT '1-7天动销率';
+------------------------------------------------------------------ 日 ---------------------------------------------------------------------------

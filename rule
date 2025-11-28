@@ -1,195 +1,195 @@
 ------------------------------------------------------------------ 周 ---------------------------------------------------------------------------
 -- 全渠道流水-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `total_amount_similar` Nullable(Decimal(32,4)) COMMENT '全渠道流水-同类值,同类店铺的(线下流水+官网流水+云店流水+大屏流水)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `total_amount_similar` decimal(38,4) DEFAULT NULL COMMENT '全渠道流水-同类值,同类店铺的(线下流水+官网流水+云店流水+大屏流水)的平均值';
 -- 零售金额达成率-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `sales_amt_actual_pct_similar` Nullable(Decimal(32,4)) COMMENT '零售金额达成率-同类值,同类店铺的(零售金额÷目标值)';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `sales_amt_actual_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '零售金额达成率-同类值,同类店铺的(零售金额÷目标值)';
 -- 线下流水-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `offline_amt_similar` Nullable(Decimal(32,4)) COMMENT '线下流水-同类值,同类店铺的门店线下流水的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `offline_amt_similar` decimal(38,4) DEFAULT NULL COMMENT '线下流水-同类值,同类店铺的门店线下流水的平均值';
 -- 官网流水-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `gw_retail_amt_similar` Nullable(Decimal(32,4)) COMMENT '官网流水-同类值,同类店铺的门店官网流水的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `gw_retail_amt_similar` decimal(38,4) DEFAULT NULL COMMENT '官网流水-同类值,同类店铺的门店官网流水的平均值';
 -- 线下流水占比-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `offline_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '线下流水占比-同类值,同类店铺的(总线下流水÷总全渠道流水)';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `offline_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '线下流水占比-同类值,同类店铺的(总线下流水÷总全渠道流水)';
 -- 云店流水占比-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `yun_store_sale_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '云店流水占比-同类值,同类店铺的(总云店流水÷总全渠道流水)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `yun_store_sale_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '云店流水占比-同类值,同类店铺的(总云店流水÷总全渠道流水)的平均值';
 -- 大屏流水占比-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `large_screen_sale_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '大屏流水占比-同类值,同类店铺的(总大屏流水÷总全渠道流水)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `large_screen_sale_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '大屏流水占比-同类值,同类店铺的(总大屏流水÷总全渠道流水)的平均值';
 -- 官网流水占比-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `gw_retail_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '官网流水占比-同类值,同类店铺的(总官网流水÷总全渠道流水)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `gw_retail_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '官网流水占比-同类值,同类店铺的(总官网流水÷总全渠道流水)的平均值';
 -- TOP50齐码率-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `top50_sku_unbroken_rate_similar` Nullable(Decimal(32,4)) COMMENT 'TOP50齐码率-同类值,同类店铺的(鞋TOP20服TOP30齐码商品款数÷鞋TOP20服TOP30商品款数)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `top50_sku_unbroken_rate_similar` decimal(10,4) DEFAULT NULL COMMENT 'TOP50齐码率-同类值,同类店铺的(鞋TOP20服TOP30齐码商品款数÷鞋TOP20服TOP30商品款数)的平均值';
 -- TOP50匹配度-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `top50_sales_inv_match_rate_similar` Nullable(Decimal(32,4)) COMMENT 'TOP50匹配度-同类值,同类店铺的(鞋TOP20服TOP30中门店与区域重合的商品款数之和÷TOP50商品款数之和)';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `top50_sales_inv_match_rate_similar` decimal(10,4) DEFAULT NULL COMMENT 'TOP50匹配度-同类值,同类店铺的(鞋TOP20服TOP30中门店与区域重合的商品款数之和÷TOP50商品款数之和)';
 -- 单件多件折扣差-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `discount_rate_diff_similar` Nullable(Decimal(32,4)) COMMENT '单件多件折扣差-同类值,同类店铺的(单件小票的折扣率-多件小票的折扣率)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `discount_rate_diff_similar` decimal(10,4) DEFAULT NULL COMMENT '单件多件折扣差-同类值,同类店铺的(单件小票的折扣率-多件小票的折扣率)的平均值';
 -- 单件小票数量-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_retail_cnt_similar` Nullable(Decimal(32,4)) COMMENT '单件小票数量-同类值,同类店铺的仅购买一件商品的订单数量的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `singular_retail_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票数量-同类值,同类店铺的仅购买一件商品的订单数量的平均值';
 -- 单件小票销售吊牌额-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_tot_amt_list_similar` Nullable(Decimal(32,4)) COMMENT '单件小票销售吊牌额-同类值,同类店铺的仅购买一件商品的订单的吊牌金额汇总的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `singular_tot_amt_list_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票销售吊牌额-同类值,同类店铺的仅购买一件商品的订单的吊牌金额汇总的平均值';
 -- 单件小票销售额-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_tot_amt_actual_similar` Nullable(Decimal(32,4)) COMMENT '单件小票销售额-同类值,同类店铺的仅购买一件商品的订单的销售额的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `singular_tot_amt_actual_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票销售额-同类值,同类店铺的仅购买一件商品的订单的销售额的平均值';
 -- 单件小票折扣率-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_discount_rate_similar` Nullable(Decimal(32,4)) COMMENT '单件小票折扣率-同类值,同类店铺的(仅购买一件商品的订单的销售额÷吊牌金额)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `singular_discount_rate_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票折扣率-同类值,同类店铺的(仅购买一件商品的订单的销售额÷吊牌金额)的平均值';
 -- 多件小票数量-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_retail_cnt_similar` Nullable(Decimal(32,4)) COMMENT '多件小票数量-同类值,同类店铺的购买2件以上商品的订单数量的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `plural_retail_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '多件小票数量-同类值,同类店铺的购买2件以上商品的订单数量的平均值';
 -- 多件小票数量占比-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_retail_cnt_pct_similar` Nullable(Decimal(32,4)) COMMENT '多件小票数量占比-同类值,同类店铺的(购买2件以上商品的订单数量 ÷总小票数)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `plural_retail_cnt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '多件小票数量占比-同类值,同类店铺的(购买2件以上商品的订单数量 ÷总小票数)的平均值';
 -- 多件小票销售吊牌额-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_tot_amt_list_similar` Nullable(Decimal(32,4)) COMMENT '多件小票销售吊牌额-同类值,同类店铺的(购买2件以上商品的订单的吊牌金额汇总)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `plural_tot_amt_list_similar` decimal(38,4) DEFAULT NULL COMMENT '多件小票销售吊牌额-同类值,同类店铺的(购买2件以上商品的订单的吊牌金额汇总)的平均值';
 -- 多件小票折扣率-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_discount_rate_similar` Nullable(Decimal(32,4)) COMMENT '多件小票折扣率-同类值,同类店铺的(购买2件以上商品的订单的销售额÷吊牌金额)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `plural_discount_rate_similar` decimal(10,4) DEFAULT NULL COMMENT '多件小票折扣率-同类值,同类店铺的(购买2件以上商品的订单的销售额÷吊牌金额)的平均值';
 -- 复购会员数-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `vip_repurchase_cnt_similar` Nullable(Decimal(32,4)) COMMENT '复购会员数-同类值,同类店铺的近180天消费≥2次的会员数的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `vip_repurchase_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '复购会员数-同类值,同类店铺的近180天消费≥2次的会员数的平均值';
 -- 会员订单占比-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `vip_retail_pct_similar` Nullable(Decimal(32,4)) COMMENT '会员订单占比-同类值,同类店铺的(会员订单数÷总订单数)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `vip_retail_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '会员订单占比-同类值,同类店铺的(会员订单数÷总订单数)的平均值';
 -- 会员平均复购天数-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `vip_repurchase_duration_similar` Nullable(Decimal(32,4)) COMMENT '会员平均复购天数-同类值,同类店铺的复购会员与上次购买时间差的均值的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `vip_repurchase_duration_similar` decimal(10,4) DEFAULT NULL COMMENT '会员平均复购天数-同类值,同类店铺的复购会员与上次购买时间差的均值的平均值';
 -- 鞋服比-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `shoes_clothes_ratio_similar` Nullable(Decimal(32,4)) COMMENT '鞋服比-同类值,同类店铺的(鞋销售数量÷服装销售数量)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `shoes_clothes_ratio_similar` decimal(10,4) DEFAULT NULL COMMENT '鞋服比-同类值,同类店铺的(鞋销售数量÷服装销售数量)的平均值';
 -- 内外比-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `inside_outside_ratio_similar` Nullable(Decimal(32,4)) COMMENT '内外比-同类值,同类店铺的(内搭销售数量÷外套销售数量)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `inside_outside_ratio_similar` decimal(10,4) DEFAULT NULL COMMENT '内外比-同类值,同类店铺的(内搭销售数量÷外套销售数量)的平均值';
 -- 人均订单量-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `retial_cnt_per_staff_similar` Nullable(Decimal(32,4)) COMMENT '人均订单量-同类值,同类店铺的(小票数÷有销售的店员数)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `retial_cnt_per_staff_similar` decimal(10,4) DEFAULT NULL COMMENT '人均订单量-同类值,同类店铺的(小票数÷有销售的店员数)的平均值';
 -- 当季产品折扣率-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `new_sku_discount_rate_similar` Nullable(Decimal(32,4)) COMMENT '当季产品折扣率-同类值,同类店铺的(新品销售额÷新品吊牌金额)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `new_sku_discount_rate_similar` decimal(10,4) DEFAULT NULL COMMENT '当季产品折扣率-同类值,同类店铺的(新品销售额÷新品吊牌金额)的平均值';
 -- 库存件牌价-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `avg_unit_inv_list_similar` Nullable(Decimal(32,4)) COMMENT '库存件牌价-同类值,同类店铺的有库存的商品平均吊牌价的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `avg_unit_inv_list_similar` decimal(10,4) DEFAULT NULL COMMENT '库存件牌价-同类值,同类店铺的有库存的商品平均吊牌价的平均值';
 -- 呆货数-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `stay_sku_cnt_similar` Nullable(Decimal(32,4)) COMMENT '呆货数-同类值,同类店铺的(到天天数＞30天切30天无销售的商品)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `stay_sku_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '呆货数-同类值,同类店铺的(到天天数＞30天切30天无销售的商品)的平均值';
 -- 销售深度-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `sale_deep_similar` Nullable(Decimal(32,4)) COMMENT '销售深度-同类值,同类店铺的(销售件数÷有销售的sku数)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `sale_deep_similar` decimal(10,4) DEFAULT NULL COMMENT '销售深度-同类值,同类店铺的(销售件数÷有销售的sku数)的平均值';
 -- 除配件连带率-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `upt_excl_acc_similar` Nullable(Decimal(32,4)) COMMENT '除配件连带率-同类值,同类店铺的除配件连带率(鞋服连带率)的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `upt_excl_acc_similar` decimal(10,4) DEFAULT NULL COMMENT '除配件连带率-同类值,同类店铺的除配件连带率(鞋服连带率)的平均值';
 -- 多件小票销售额-同类值
-ALTER TABLE dm_similar_store_weekly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_tot_amt_actual_similar` Nullable(Decimal(32,4)) COMMENT '多件小票销售额-同类值,同类店铺的购买2件以上商品的订单的销售额的平均值';
+ALTER TABLE dm_similar_store_weekly_stats_tmp ADD COLUMN `plural_tot_amt_actual_similar` decimal(38,4) DEFAULT NULL COMMENT '多件小票销售额-同类值,同类店铺的购买2件以上商品的订单的销售额的平均值';
 ------------------------------------------------------------------ 周 ---------------------------------------------------------------------------
 
 
 ------------------------------------------------------------------ 月 ---------------------------------------------------------------------------
 -- 全渠道流水-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `total_amount_similar` Nullable(Decimal(32,4)) COMMENT '全渠道流水-同类值,同类店铺的(线下流水+官网流水+云店流水+大屏流水)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `total_amount_similar` decimal(38,4) DEFAULT NULL COMMENT '全渠道流水-同类值,同类店铺的(线下流水+官网流水+云店流水+大屏流水)的平均值';
 -- 零售金额达成率-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `sales_amt_actual_pct_similar` Nullable(Decimal(32,4)) COMMENT '零售金额达成率-同类值,同类店铺的(零售金额÷目标值)';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `sales_amt_actual_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '零售金额达成率-同类值,同类店铺的(零售金额÷目标值)';
 -- 线下流水-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `offline_amt_similar` Nullable(Decimal(32,4)) COMMENT '线下流水-同类值,同类店铺的门店线下流水的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `offline_amt_similar` decimal(38,4) DEFAULT NULL COMMENT '线下流水-同类值,同类店铺的门店线下流水的平均值';
 -- 官网流水-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `gw_retail_amt_similar` Nullable(Decimal(32,4)) COMMENT '官网流水-同类值,同类店铺的门店官网流水的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `gw_retail_amt_similar` decimal(38,4) DEFAULT NULL COMMENT '官网流水-同类值,同类店铺的门店官网流水的平均值';
 -- 线下流水占比-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `offline_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '线下流水占比-同类值,同类店铺的(总线下流水÷总全渠道流水)';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `offline_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '线下流水占比-同类值,同类店铺的(总线下流水÷总全渠道流水)';
 -- 云店流水占比-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `yun_store_sale_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '云店流水占比-同类值,同类店铺的(总云店流水÷总全渠道流水)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `yun_store_sale_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '云店流水占比-同类值,同类店铺的(总云店流水÷总全渠道流水)的平均值';
 -- 大屏流水占比-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `large_screen_sale_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '大屏流水占比-同类值,同类店铺的(总大屏流水÷总全渠道流水)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `large_screen_sale_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '大屏流水占比-同类值,同类店铺的(总大屏流水÷总全渠道流水)的平均值';
 -- 官网流水占比-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `gw_retail_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '官网流水占比-同类值,同类店铺的(总官网流水÷总全渠道流水)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `gw_retail_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '官网流水占比-同类值,同类店铺的(总官网流水÷总全渠道流水)的平均值';
 -- TOP50齐码率-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `top50_sku_unbroken_rate_similar` Nullable(Decimal(32,4)) COMMENT 'TOP50齐码率-同类值,同类店铺的(鞋TOP20服TOP30齐码商品款数÷鞋TOP20服TOP30商品款数)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `top50_sku_unbroken_rate_similar` decimal(10,4) DEFAULT NULL COMMENT 'TOP50齐码率-同类值,同类店铺的(鞋TOP20服TOP30齐码商品款数÷鞋TOP20服TOP30商品款数)的平均值';
 -- TOP50匹配度-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `top50_sales_inv_match_rate_similar` Nullable(Decimal(32,4)) COMMENT 'TOP50匹配度-同类值,同类店铺的(鞋TOP20服TOP30中门店与区域重合的商品款数之和÷TOP50商品款数之和)';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `top50_sales_inv_match_rate_similar` decimal(10,4) DEFAULT NULL COMMENT 'TOP50匹配度-同类值,同类店铺的(鞋TOP20服TOP30中门店与区域重合的商品款数之和÷TOP50商品款数之和)';
 -- 单件多件折扣差-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `discount_rate_diff_similar` Nullable(Decimal(32,4)) COMMENT '单件多件折扣差-同类值,同类店铺的(单件小票的折扣率-多件小票的折扣率)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `discount_rate_diff_similar` decimal(10,4) DEFAULT NULL COMMENT '单件多件折扣差-同类值,同类店铺的(单件小票的折扣率-多件小票的折扣率)的平均值';
 -- 单件小票数量-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_retail_cnt_similar` Nullable(Decimal(32,4)) COMMENT '单件小票数量-同类值,同类店铺的仅购买一件商品的订单数量的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `singular_retail_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票数量-同类值,同类店铺的仅购买一件商品的订单数量的平均值';
 -- 单件小票销售吊牌额-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_tot_amt_list_similar` Nullable(Decimal(32,4)) COMMENT '单件小票销售吊牌额-同类值,同类店铺的仅购买一件商品的订单的吊牌金额汇总的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `singular_tot_amt_list_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票销售吊牌额-同类值,同类店铺的仅购买一件商品的订单的吊牌金额汇总的平均值';
 -- 单件小票销售额-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_tot_amt_actual_similar` Nullable(Decimal(32,4)) COMMENT '单件小票销售额-同类值,同类店铺的仅购买一件商品的订单的销售额的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `singular_tot_amt_actual_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票销售额-同类值,同类店铺的仅购买一件商品的订单的销售额的平均值';
 -- 单件小票折扣率-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_discount_rate_similar` Nullable(Decimal(32,4)) COMMENT '单件小票折扣率-同类值,同类店铺的(仅购买一件商品的订单的销售额÷吊牌金额)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `singular_discount_rate_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票折扣率-同类值,同类店铺的(仅购买一件商品的订单的销售额÷吊牌金额)的平均值';
 -- 多件小票数量-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_retail_cnt_similar` Nullable(Decimal(32,4)) COMMENT '多件小票数量-同类值,同类店铺的购买2件以上商品的订单数量的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `plural_retail_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '多件小票数量-同类值,同类店铺的购买2件以上商品的订单数量的平均值';
 -- 多件小票数量占比-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_retail_cnt_pct_similar` Nullable(Decimal(32,4)) COMMENT '多件小票数量占比-同类值,同类店铺的(购买2件以上商品的订单数量 ÷总小票数)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `plural_retail_cnt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '多件小票数量占比-同类值,同类店铺的(购买2件以上商品的订单数量 ÷总小票数)的平均值';
 -- 多件小票销售吊牌额-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_tot_amt_list_similar` Nullable(Decimal(32,4)) COMMENT '多件小票销售吊牌额-同类值,同类店铺的(购买2件以上商品的订单的吊牌金额汇总)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `plural_tot_amt_list_similar` decimal(38,4) DEFAULT NULL COMMENT '多件小票销售吊牌额-同类值,同类店铺的(购买2件以上商品的订单的吊牌金额汇总)的平均值';
 -- 多件小票折扣率-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_discount_rate_similar` Nullable(Decimal(32,4)) COMMENT '多件小票折扣率-同类值,同类店铺的(购买2件以上商品的订单的销售额÷吊牌金额)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `plural_discount_rate_similar` decimal(10,4) DEFAULT NULL COMMENT '多件小票折扣率-同类值,同类店铺的(购买2件以上商品的订单的销售额÷吊牌金额)的平均值';
 -- 复购会员数-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `vip_repurchase_cnt_similar` Nullable(Decimal(32,4)) COMMENT '复购会员数-同类值,同类店铺的近180天消费≥2次的会员数的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `vip_repurchase_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '复购会员数-同类值,同类店铺的近180天消费≥2次的会员数的平均值';
 -- 会员订单占比-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `vip_retail_pct_similar` Nullable(Decimal(32,4)) COMMENT '会员订单占比-同类值,同类店铺的(会员订单数÷总订单数)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `vip_retail_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '会员订单占比-同类值,同类店铺的(会员订单数÷总订单数)的平均值';
 -- 会员平均复购天数-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `vip_repurchase_duration_similar` Nullable(Decimal(32,4)) COMMENT '会员平均复购天数-同类值,同类店铺的复购会员与上次购买时间差的均值的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `vip_repurchase_duration_similar` decimal(10,4) DEFAULT NULL COMMENT '会员平均复购天数-同类值,同类店铺的复购会员与上次购买时间差的均值的平均值';
 -- 鞋服比-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `shoes_clothes_ratio_similar` Nullable(Decimal(32,4)) COMMENT '鞋服比-同类值,同类店铺的(鞋销售数量÷服装销售数量)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `shoes_clothes_ratio_similar` decimal(10,4) DEFAULT NULL COMMENT '鞋服比-同类值,同类店铺的(鞋销售数量÷服装销售数量)的平均值';
 -- 内外比-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `inside_outside_ratio_similar` Nullable(Decimal(32,4)) COMMENT '内外比-同类值,同类店铺的(内搭销售数量÷外套销售数量)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `inside_outside_ratio_similar` decimal(10,4) DEFAULT NULL COMMENT '内外比-同类值,同类店铺的(内搭销售数量÷外套销售数量)的平均值';
 -- 人均订单量-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `retial_cnt_per_staff_similar` Nullable(Decimal(32,4)) COMMENT '人均订单量-同类值,同类店铺的(小票数÷有销售的店员数)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `retial_cnt_per_staff_similar` decimal(10,4) DEFAULT NULL COMMENT '人均订单量-同类值,同类店铺的(小票数÷有销售的店员数)的平均值';
 -- 当季产品折扣率-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `new_sku_discount_rate_similar` Nullable(Decimal(32,4)) COMMENT '当季产品折扣率-同类值,同类店铺的(新品销售额÷新品吊牌金额)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `new_sku_discount_rate_similar` decimal(10,4) DEFAULT NULL COMMENT '当季产品折扣率-同类值,同类店铺的(新品销售额÷新品吊牌金额)的平均值';
 -- 库存件牌价-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `avg_unit_inv_list_similar` Nullable(Decimal(32,4)) COMMENT '库存件牌价-同类值,同类店铺的有库存的商品平均吊牌价的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `avg_unit_inv_list_similar` decimal(10,4) DEFAULT NULL COMMENT '库存件牌价-同类值,同类店铺的有库存的商品平均吊牌价的平均值';
 -- 呆货数-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `stay_sku_cnt_similar` Nullable(Decimal(32,4)) COMMENT '呆货数-同类值,同类店铺的(到天天数＞30天切30天无销售的商品)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `stay_sku_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '呆货数-同类值,同类店铺的(到天天数＞30天切30天无销售的商品)的平均值';
 -- 销售深度-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `sale_deep_similar` Nullable(Decimal(32,4)) COMMENT '销售深度-同类值,同类店铺的(销售件数÷有销售的sku数)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `sale_deep_similar` decimal(10,4) DEFAULT NULL COMMENT '销售深度-同类值,同类店铺的(销售件数÷有销售的sku数)的平均值';
 -- 除配件连带率-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `upt_excl_acc_similar` Nullable(Decimal(32,4)) COMMENT '除配件连带率-同类值,同类店铺的除配件连带率(鞋服连带率)的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `upt_excl_acc_similar` decimal(10,4) DEFAULT NULL COMMENT '除配件连带率-同类值,同类店铺的除配件连带率(鞋服连带率)的平均值';
 -- 多件小票销售额-同类值
-ALTER TABLE dm_similar_store_monthly_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_tot_amt_actual_similar` Nullable(Decimal(32,4)) COMMENT '多件小票销售额-同类值,同类店铺的购买2件以上商品的订单的销售额的平均值';
+ALTER TABLE dm_similar_store_monthly_stats_tmp ADD COLUMN `plural_tot_amt_actual_similar` decimal(38,4) DEFAULT NULL COMMENT '多件小票销售额-同类值,同类店铺的购买2件以上商品的订单的销售额的平均值';
 ------------------------------------------------------------------ 月 ---------------------------------------------------------------------------
 
 ------------------------------------------------------------------ 日 ---------------------------------------------------------------------------
 -- 全渠道流水-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `total_amount_similar` Nullable(Decimal(32,4)) COMMENT '全渠道流水-同类值,同类店铺的(线下流水+官网流水+云店流水+大屏流水)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `total_amount_similar` decimal(38,4) DEFAULT NULL COMMENT '全渠道流水-同类值,同类店铺的(线下流水+官网流水+云店流水+大屏流水)的平均值';
 -- 零售金额达成率-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `sales_amt_actual_pct_similar` Nullable(Decimal(32,4)) COMMENT '零售金额达成率-同类值,同类店铺的(零售金额÷目标值)';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `sales_amt_actual_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '零售金额达成率-同类值,同类店铺的(零售金额÷目标值)';
 -- 线下流水-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `offline_amt_similar` Nullable(Decimal(32,4)) COMMENT '线下流水-同类值,同类店铺的门店线下流水的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `offline_amt_similar` decimal(38,4) DEFAULT NULL COMMENT '线下流水-同类值,同类店铺的门店线下流水的平均值';
 -- 官网流水-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `gw_retail_amt_similar` Nullable(Decimal(32,4)) COMMENT '官网流水-同类值,同类店铺的门店官网流水的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `gw_retail_amt_similar` decimal(38,4) DEFAULT NULL COMMENT '官网流水-同类值,同类店铺的门店官网流水的平均值';
 -- 线下流水占比-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `offline_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '线下流水占比-同类值,同类店铺的(总线下流水÷总全渠道流水)';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `offline_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '线下流水占比-同类值,同类店铺的(总线下流水÷总全渠道流水)';
 -- 云店流水占比-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `yun_store_sale_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '云店流水占比-同类值,同类店铺的(总云店流水÷总全渠道流水)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `yun_store_sale_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '云店流水占比-同类值,同类店铺的(总云店流水÷总全渠道流水)的平均值';
 -- 大屏流水占比-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `large_screen_sale_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '大屏流水占比-同类值,同类店铺的(总大屏流水÷总全渠道流水)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `large_screen_sale_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '大屏流水占比-同类值,同类店铺的(总大屏流水÷总全渠道流水)的平均值';
 -- 官网流水占比-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `gw_retail_amt_pct_similar` Nullable(Decimal(32,4)) COMMENT '官网流水占比-同类值,同类店铺的(总官网流水÷总全渠道流水)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `gw_retail_amt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '官网流水占比-同类值,同类店铺的(总官网流水÷总全渠道流水)的平均值';
 -- TOP50齐码率-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `top50_sku_unbroken_rate_similar` Nullable(Decimal(32,4)) COMMENT 'TOP50齐码率-同类值,同类店铺的(鞋TOP20服TOP30齐码商品款数÷鞋TOP20服TOP30商品款数)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `top50_sku_unbroken_rate_similar` decimal(10,4) DEFAULT NULL COMMENT 'TOP50齐码率-同类值,同类店铺的(鞋TOP20服TOP30齐码商品款数÷鞋TOP20服TOP30商品款数)的平均值';
 -- TOP50匹配度-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `top50_sales_inv_match_rate_similar` Nullable(Decimal(32,4)) COMMENT 'TOP50匹配度-同类值,同类店铺的(鞋TOP20服TOP30中门店与区域重合的商品款数之和÷TOP50商品款数之和)';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `top50_sales_inv_match_rate_similar` decimal(10,4) DEFAULT NULL COMMENT 'TOP50匹配度-同类值,同类店铺的(鞋TOP20服TOP30中门店与区域重合的商品款数之和÷TOP50商品款数之和)';
 -- 单件多件折扣差-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `discount_rate_diff_similar` Nullable(Decimal(32,4)) COMMENT '单件多件折扣差-同类值,同类店铺的(单件小票的折扣率-多件小票的折扣率)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `discount_rate_diff_similar` decimal(10,4) DEFAULT NULL COMMENT '单件多件折扣差-同类值,同类店铺的(单件小票的折扣率-多件小票的折扣率)的平均值';
 -- 单件小票数量-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_retail_cnt_similar` Nullable(Decimal(32,4)) COMMENT '单件小票数量-同类值,同类店铺的仅购买一件商品的订单数量的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `singular_retail_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票数量-同类值,同类店铺的仅购买一件商品的订单数量的平均值';
 -- 单件小票销售吊牌额-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_tot_amt_list_similar` Nullable(Decimal(32,4)) COMMENT '单件小票销售吊牌额-同类值,同类店铺的仅购买一件商品的订单的吊牌金额汇总的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `singular_tot_amt_list_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票销售吊牌额-同类值,同类店铺的仅购买一件商品的订单的吊牌金额汇总的平均值';
 -- 单件小票销售额-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_tot_amt_actual_similar` Nullable(Decimal(32,4)) COMMENT '单件小票销售额-同类值,同类店铺的仅购买一件商品的订单的销售额的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `singular_tot_amt_actual_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票销售额-同类值,同类店铺的仅购买一件商品的订单的销售额的平均值';
 -- 单件小票折扣率-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `singular_discount_rate_similar` Nullable(Decimal(32,4)) COMMENT '单件小票折扣率-同类值,同类店铺的(仅购买一件商品的订单的销售额÷吊牌金额)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `singular_discount_rate_similar` decimal(10,4) DEFAULT NULL COMMENT '单件小票折扣率-同类值,同类店铺的(仅购买一件商品的订单的销售额÷吊牌金额)的平均值';
 -- 多件小票数量-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_retail_cnt_similar` Nullable(Decimal(32,4)) COMMENT '多件小票数量-同类值,同类店铺的购买2件以上商品的订单数量的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `plural_retail_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '多件小票数量-同类值,同类店铺的购买2件以上商品的订单数量的平均值';
 -- 多件小票数量占比-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_retail_cnt_pct_similar` Nullable(Decimal(32,4)) COMMENT '多件小票数量占比-同类值,同类店铺的(购买2件以上商品的订单数量 ÷总小票数)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `plural_retail_cnt_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '多件小票数量占比-同类值,同类店铺的(购买2件以上商品的订单数量 ÷总小票数)的平均值';
 -- 多件小票销售吊牌额-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_tot_amt_list_similar` Nullable(Decimal(32,4)) COMMENT '多件小票销售吊牌额-同类值,同类店铺的(购买2件以上商品的订单的吊牌金额汇总)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `plural_tot_amt_list_similar` decimal(38,4) DEFAULT NULL COMMENT '多件小票销售吊牌额-同类值,同类店铺的(购买2件以上商品的订单的吊牌金额汇总)的平均值';
 -- 多件小票折扣率-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_discount_rate_similar` Nullable(Decimal(32,4)) COMMENT '多件小票折扣率-同类值,同类店铺的(购买2件以上商品的订单的销售额÷吊牌金额)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `plural_discount_rate_similar` decimal(10,4) DEFAULT NULL COMMENT '多件小票折扣率-同类值,同类店铺的(购买2件以上商品的订单的销售额÷吊牌金额)的平均值';
 -- 复购会员数-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `vip_repurchase_cnt_similar` Nullable(Decimal(32,4)) COMMENT '复购会员数-同类值,同类店铺的近180天消费≥2次的会员数的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `vip_repurchase_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '复购会员数-同类值,同类店铺的近180天消费≥2次的会员数的平均值';
 -- 会员订单占比-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `vip_retail_pct_similar` Nullable(Decimal(32,4)) COMMENT '会员订单占比-同类值,同类店铺的(会员订单数÷总订单数)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `vip_retail_pct_similar` decimal(10,4) DEFAULT NULL COMMENT '会员订单占比-同类值,同类店铺的(会员订单数÷总订单数)的平均值';
 -- 会员平均复购天数-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `vip_repurchase_duration_similar` Nullable(Decimal(32,4)) COMMENT '会员平均复购天数-同类值,同类店铺的复购会员与上次购买时间差的均值的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `vip_repurchase_duration_similar` decimal(10,4) DEFAULT NULL COMMENT '会员平均复购天数-同类值,同类店铺的复购会员与上次购买时间差的均值的平均值';
 -- 鞋服比-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `shoes_clothes_ratio_similar` Nullable(Decimal(32,4)) COMMENT '鞋服比-同类值,同类店铺的(鞋销售数量÷服装销售数量)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `shoes_clothes_ratio_similar` decimal(10,4) DEFAULT NULL COMMENT '鞋服比-同类值,同类店铺的(鞋销售数量÷服装销售数量)的平均值';
 -- 内外比-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `inside_outside_ratio_similar` Nullable(Decimal(32,4)) COMMENT '内外比-同类值,同类店铺的(内搭销售数量÷外套销售数量)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `inside_outside_ratio_similar` decimal(10,4) DEFAULT NULL COMMENT '内外比-同类值,同类店铺的(内搭销售数量÷外套销售数量)的平均值';
 -- 人均订单量-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `retial_cnt_per_staff_similar` Nullable(Decimal(32,4)) COMMENT '人均订单量-同类值,同类店铺的(小票数÷有销售的店员数)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `retial_cnt_per_staff_similar` decimal(10,4) DEFAULT NULL COMMENT '人均订单量-同类值,同类店铺的(小票数÷有销售的店员数)的平均值';
 -- 当季产品折扣率-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `new_sku_discount_rate_similar` Nullable(Decimal(32,4)) COMMENT '当季产品折扣率-同类值,同类店铺的(新品销售额÷新品吊牌金额)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `new_sku_discount_rate_similar` decimal(10,4) DEFAULT NULL COMMENT '当季产品折扣率-同类值,同类店铺的(新品销售额÷新品吊牌金额)的平均值';
 -- 库存件牌价-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `avg_unit_inv_list_similar` Nullable(Decimal(32,4)) COMMENT '库存件牌价-同类值,同类店铺的有库存的商品平均吊牌价的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `avg_unit_inv_list_similar` decimal(10,4) DEFAULT NULL COMMENT '库存件牌价-同类值,同类店铺的有库存的商品平均吊牌价的平均值';
 -- 呆货数-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `stay_sku_cnt_similar` Nullable(Decimal(32,4)) COMMENT '呆货数-同类值,同类店铺的(到天天数＞30天切30天无销售的商品)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `stay_sku_cnt_similar` decimal(10,4) DEFAULT NULL COMMENT '呆货数-同类值,同类店铺的(到天天数＞30天切30天无销售的商品)的平均值';
 -- 销售深度-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `sale_deep_similar` Nullable(Decimal(32,4)) COMMENT '销售深度-同类值,同类店铺的(销售件数÷有销售的sku数)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `sale_deep_similar` decimal(10,4) DEFAULT NULL COMMENT '销售深度-同类值,同类店铺的(销售件数÷有销售的sku数)的平均值';
 -- 除配件连带率-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `upt_excl_acc_similar` Nullable(Decimal(32,4)) COMMENT '除配件连带率-同类值,同类店铺的除配件连带率(鞋服连带率)的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `upt_excl_acc_similar` decimal(10,4) DEFAULT NULL COMMENT '除配件连带率-同类值,同类店铺的除配件连带率(鞋服连带率)的平均值';
 -- 多件小票销售额-同类值
-ALTER TABLE dm_similar_store_daily_stats ON CLUSTER cluster_single_shard ADD COLUMN `plural_tot_amt_actual_similar` Nullable(Decimal(32,4)) COMMENT '多件小票销售额-同类值,同类店铺的购买2件以上商品的订单的销售额的平均值';
+ALTER TABLE dm_similar_store_daily_stats_tmp ADD COLUMN `plural_tot_amt_actual_similar` decimal(38,4) DEFAULT NULL COMMENT '多件小票销售额-同类值,同类店铺的购买2件以上商品的订单的销售额的平均值';
 ------------------------------------------------------------------ 日 ---------------------------------------------------------------------------

@@ -1,0 +1,42 @@
+@Value("${oss.endpoint:}")
+    private String endpoint;
+
+    @Value("${oss.accessKeyId:}")
+    private String accessKeyId;
+
+    @Value("${oss.accessKeySecret:}")
+    private String accessKeySecret;
+
+    @Value("${oss.bucketName:}")
+    private String bucketName;
+
+    /**
+     * 上传文件到阿里云OSS
+     *
+     * @param localFilePath 本地文件路径
+     * @param ossFilePath   OSS文件路径
+     * @return 是否上传成功
+     */
+    public boolean uploadFileToOSS(String localFilePath, String ossFilePath) {
+        OSS ossClient = null;
+        try {
+            // 创建OSSClient实例
+            ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+
+            // 创建PutObjectRequest对象
+            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, ossFilePath, new File(localFilePath));
+
+            // 上传文件
+            ossClient.putObject(putObjectRequest);
+
+            log.info("文件上传成功，本地文件: {}，OSS路径: {}", localFilePath, ossFilePath);
+            return true;
+        } catch (Exception e) {
+            log.error("文件上传失败，本地文件: {}，OSS路径: {}", localFilePath, ossFilePath, e);
+            return false;
+        } finally {
+            if (ossClient != null) {
+                ossClient.shutdown();
+            }
+        }
+    }

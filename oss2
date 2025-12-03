@@ -1,0 +1,41 @@
+public static boolean downFileFromOSS(String ossFilePath, String localFilePath, String endpoint, String accessKeyId, String accessKeySecret, String bucketName) {
+        OSS ossClient = null;
+        try {
+            // 创建OSSClient实例
+            ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+
+            boolean exists = ossClient.doesObjectExist(bucketName, ossFilePath);
+            if (!exists) {
+                System.out.println("对象不存在");
+            }
+
+
+            // 创建PutObjectRequest对象
+            GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, ossFilePath);
+
+            // 上传文件
+            ossClient.getObject(getObjectRequest, new File(localFilePath));
+
+//            try (OutputStream outputStream = new FileOutputStream(localFilePath)) {
+//                Files.copy(object.getObjectContent(), Paths.get(localFilePath), StandardCopyOption.REPLACE_EXISTING); // 直接复制，覆盖已存在的文件（如果需要）
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
+
+            log.info("文件下载成功，本地文件: {}，OSS路径: {}", localFilePath, ossFilePath);
+            return true;
+        } catch (Exception e) {
+            log.error("文件下载失败，本地文件: {}，OSS路径: {}", localFilePath, ossFilePath, e);
+            return false;
+        } finally {
+            if (ossClient != null) {
+                ossClient.shutdown();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        downFileFromOSS("task_match/cb", "D:\\amoros\\c.tar.gz", "oss-cn-shanghai.aliyuncs.com",
+                "LTAI5tJXPHi4uEJEXGMk7EqH2", "4e7N87x1vcUwaQwwBttl276IBtVmHj", "amoros-tmp-file");
+    }
